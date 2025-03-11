@@ -1,0 +1,23 @@
+name: stock-trading-rl
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - matplotlib
+  - pip
+  - scikit-learn
+  - jupyter
+  - ipykernel
+  - tensorboard
+  - pytorch
+  - cudatoolkit=11.3
+  - ta-lib
+  - pip:
+    - gymnasium==0.29.1
+    - stable-baselines3==2.2.1
+    - yfinance==0.2.36
+    - optuna==3.5.0
+    - streamlit==1.31.0
