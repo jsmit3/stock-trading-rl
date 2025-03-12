@@ -1,2 +1,3 @@
 # Exclude data cache directory
 data_cache/
+archive/
