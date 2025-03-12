@@ -30,6 +30,9 @@ from trading.risk_manager import RiskManager
 from market.simulator import MarketSimulator
 from data.processor import DataProcessor
 
+# Import data access utilities
+from flexible_data_processor import get_daily_data, aggregate_to_daily
+
 from utils.debug_utils import (
     run_debug_episodes, 
     generate_balanced_random_action,
