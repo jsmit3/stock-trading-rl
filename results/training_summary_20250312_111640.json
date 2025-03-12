@@ -1,0 +1,1 @@
+{"timestamp": "20250312_111640", "training_results": {"AAPL_daily": {"symbol": "AAPL_daily", "status": "failed", "reason": "exception", "error": "could not broadcast input array from shape (325,) into shape (100,)"}}, "evaluation_results": {}}

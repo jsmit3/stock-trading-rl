@@ -1,0 +1,18 @@
+{
+  "training_params": {
+    "initial_capital": 100000.0,
+    "window_size": 20,
+    "max_position_pct": 0.25,
+    "transaction_cost_pct": 0.0015,
+    "curriculum_level": 1,
+    "learning_rate": 3e-05,
+    "buffer_size": 200000,
+    "batch_size": 256,
+    "total_timesteps": 100000,
+    "seed": 42,
+    "curriculum_target_reward": 0.5,
+    "curriculum_window_size": 20
+  },
+  "training_results": {},
+  "evaluation_results": {}
+}
