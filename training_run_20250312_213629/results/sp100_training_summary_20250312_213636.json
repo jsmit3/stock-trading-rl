@@ -1,0 +1,47 @@
+{
+  "training_params": {
+    "initial_capital": 100000.0,
+    "window_size": 20,
+    "max_position_pct": 0.25,
+    "transaction_cost_pct": 0.0015,
+    "curriculum_level": 1,
+    "learning_rate": 3e-05,
+    "buffer_size": 200000,
+    "batch_size": 256,
+    "total_timesteps": 200000,
+    "seed": 42
+  },
+  "training_results": {
+    "AAPL": {
+      "symbol": "AAPL",
+      "status": "failed",
+      "reason": "exception",
+      "error": "could not broadcast input array from shape (305,) into shape (100,)"
+    },
+    "MSFT": {
+      "symbol": "MSFT",
+      "status": "failed",
+      "reason": "exception",
+      "error": "could not broadcast input array from shape (305,) into shape (100,)"
+    },
+    "GOOGL": {
+      "symbol": "GOOGL",
+      "status": "failed",
+      "reason": "exception",
+      "error": "could not broadcast input array from shape (305,) into shape (100,)"
+    },
+    "AMZN": {
+      "symbol": "AMZN",
+      "status": "failed",
+      "reason": "exception",
+      "error": "could not broadcast input array from shape (305,) into shape (100,)"
+    },
+    "META": {
+      "symbol": "META",
+      "status": "failed",
+      "reason": "exception",
+      "error": "could not broadcast input array from shape (305,) into shape (100,)"
+    }
+  },
+  "evaluation_results": {}
+}

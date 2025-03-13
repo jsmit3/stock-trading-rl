@@ -62,7 +62,8 @@ class StockTradingEnv(gym.Env):
         max_episodes: Optional[int] = None,
         curriculum_level: int = 1,
         debug_mode: bool = False,
-        min_episode_length: int = 20
+        min_episode_length: int = 20,
+        observation_generator: Optional[ObservationGenerator] = None  # New parameter
     ):
         """
         Initialize the stock trading environment.
@@ -86,6 +87,7 @@ class StockTradingEnv(gym.Env):
             curriculum_level: Current curriculum learning level (1-3)
             debug_mode: Whether to print debug information
             min_episode_length: Minimum number of steps before allowing early termination
+            observation_generator: Custom observation generator (optional)
         """
         super(StockTradingEnv, self).__init__()
         
@@ -123,10 +125,14 @@ class StockTradingEnv(gym.Env):
         )
         
         # Initialize component modules
-        self.observation_generator = ObservationGenerator(
-            window_size=window_size, 
-            include_sentiment=include_sentiment
-        )
+        # Use provided observation generator or create default
+        if observation_generator is not None:
+            self.observation_generator = observation_generator
+        else:
+            self.observation_generator = ObservationGenerator(
+                window_size=window_size, 
+                include_sentiment=include_sentiment
+            )
         
         self.action_interpreter = ActionInterpreter(
             max_position_pct=self.max_position_pct,
@@ -160,7 +166,7 @@ class StockTradingEnv(gym.Env):
         
         self.renderer = EnvironmentRenderer()
         
-        # Define action and observation spaces
+        # Define action space
         self.action_space = spaces.Box(
             low=np.array([0, 0, 0, 0]),  # Position size, stop-loss, take-profit, exit signal
             high=np.array([1, 1, 1, 1]),
@@ -190,6 +196,41 @@ class StockTradingEnv(gym.Env):
         self.max_holding_count = 0
         self.exit_signal_count = 0
         self.early_termination_count = 0
+    
+    def set_observation_generator(self, observation_generator):
+        """
+        Replace the observation generator and update observation space.
+        
+        Args:
+            observation_generator: New observation generator to use
+        """
+        # Store the old generator temporarily
+        old_generator = self.observation_generator
+        
+        # Set the new generator
+        self.observation_generator = observation_generator
+        
+        # Generate a dummy observation with the new generator
+        try:
+            dummy_observation = self._get_observation()
+            
+            # Update the observation space
+            self.observation_space = spaces.Box(
+                low=-np.inf,
+                high=np.inf,
+                shape=dummy_observation.shape,
+                dtype=np.float32
+            )
+            
+            if self.debug_mode:
+                print(f"Updated observation space to shape: {dummy_observation.shape}")
+        except Exception as e:
+            # Restore the old generator if there's a problem
+            self.observation_generator = old_generator
+            if self.debug_mode:
+                print(f"Error updating observation generator: {e}")
+                print("Reverted to previous observation generator")
+            raise e
     
     def _apply_curriculum_settings(self):
         """Apply settings based on curriculum level"""
@@ -572,12 +613,14 @@ class StockTradingEnv(gym.Env):
         except Exception as e:
             if self.debug_mode:
                 print(f"Error generating observation: {e}")
-            # Return a zero vector of the correct shape as a fallback
+            
+            # Return a zero vector of the CORRECT shape as a fallback
             if hasattr(self, 'observation_space'):
                 return np.zeros(self.observation_space.shape, dtype=np.float32)
             else:
-                # If observation_space not defined yet, return a placeholder
-                return np.zeros(100, dtype=np.float32)
+                # If observation_space not defined yet, create a basic observation
+                # Use the actual size that matches your final size (325) instead of arbitrary 100
+                return np.zeros(325, dtype=np.float32)
     
     def _execute_trading_logic(
         self, 
