@@ -698,7 +698,7 @@ class MultiStockTrainer:
         """
         # Get symbols to use
         symbols_to_use = symbols or self.load_symbols(symbols_file)
-        print(f"Working with {len(symbols_to_use)} symbols: {', '.join(symbols_to_use)}")
+        print(f"Working with {len(symbols_to_use)} symbols: {', '.join(symbols_to_use[:min(5, len(symbols_to_use))])}")
         
         # Load and process stock data
         self.stock_data = self.load_stock_data(symbols_to_use)
@@ -778,4 +778,39 @@ if __name__ == "__main__":
     parser.add_argument("--output-dir", type=str, default="multi_stock_output", help="Output directory")
     parser.add_argument("--symbols-file", type=str, help="Path to file with symbols")
     parser.add_argument("--symbols", type=str, nargs="+", help="Symbols to use")
-    parser.add_argument("--timesteps", type=int, default=
+    parser.add_argument("--timesteps", type=int, default=200000, help="Number of timesteps for training")
+    parser.add_argument("--obs-dim", type=int, default=325, help="Observation dimension")
+    parser.add_argument("--symbol-dim", type=int, default=20, help="Symbol embedding dimension")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed")
+    
+    args = parser.parse_args()
+    
+    # Create trainer
+    trainer = MultiStockTrainer(
+        db_path=args.db_path,
+        timeframe=args.timeframe,
+        output_dir=args.output_dir,
+        training_params={
+            'total_timesteps': args.timesteps,
+            'seed': args.seed,
+            'observation_dim': args.obs_dim,
+            'symbol_feature_dim': args.symbol_dim
+        },
+        observation_dim=args.obs_dim,
+        symbol_feature_dim=args.symbol_dim
+    )
+    
+    # Run training and evaluation
+    symbols = args.symbols if args.symbols else None
+    results = trainer.run(symbols=symbols, symbols_file=args.symbols_file)
+    
+    # Print final status
+    if results["training_results"].get("status") == "success":
+        print("\nTraining completed successfully!")
+        
+        success_count = sum(1 for r in results["evaluation_results"].values() 
+                          if r.get("status") == "success")
+        
+        print(f"Successfully evaluated on {success_count}/{len(results['evaluation_results'])} symbols")
+    else:
+        print("\nTraining failed:", results["training_results"].get("reason", "unknown reason"))
