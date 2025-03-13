@@ -1,28 +1,24 @@
 """
-agent/callbacks.py
+agent/early_stopping_callback.py
 
-Implements custom callbacks for the reinforcement learning training process.
+Implements early stopping based on trading-specific metrics.
 
-This module provides specialized callbacks for:
-- Curriculum learning progression
-- Performance metrics logging
-- Early stopping
-- Trading-specific visualizations
+This callback extends the standard EvalCallback to consider:
+- Win rate
+- Sharpe ratio
+- Maximum drawdown
+- Consistent profitability
 
 Author: [Your Name]
-Date: March 10, 2025
+Date: March 13, 2025
 """
 
 import os
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from typing import Dict, List, Optional, Any, Union, Tuple, Tuple
-from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
+from typing import Dict, Any
+from stable_baselines3.common.callbacks import EvalCallback
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.vec_env import VecEnv
-
-
 
 
 class TradingEarlyStoppingCallback(EvalCallback):
@@ -147,7 +143,7 @@ class TradingEarlyStoppingCallback(EvalCallback):
         
         return continue_training
         
-    def _evaluate_trading_metrics(self) -> Tuple[int, int, float, float]:
+    def _evaluate_trading_metrics(self) -> tuple:
         """
         Evaluate trading-specific metrics.
         
@@ -167,20 +163,80 @@ class TradingEarlyStoppingCallback(EvalCallback):
         )
         
         # Get the unwrapped environment
-        env = self.eval_env.envs[0].env.env  # Unwrap to get StockTradingEnv
+        env = self._get_unwrapped_env()
         
-        # Get trading metrics
-        wins = env.take_profit_count + env.exit_signal_count
-        losses = env.stop_loss_count + env.max_holding_count
+        # Default metrics if we can't get the environment
+        wins = 0
+        losses = 0
+        
+        # Try to get metrics from environment
+        if env is not None:
+            wins = getattr(env, 'take_profit_count', 0) + getattr(env, 'exit_signal_count', 0)
+            losses = getattr(env, 'stop_loss_count', 0) + getattr(env, 'max_holding_count', 0)
         
         # Calculate returns and drawdowns
-        returns = np.array(episode_rewards) / env.initial_capital
+        returns = np.array(episode_rewards) / (env.initial_capital if env is not None else 100000.0)
+        
         # Approximate Sharpe ratio using episode returns
         mean_return = np.mean(returns)
         std_return = np.std(returns) if len(returns) > 1 else 1.0
         sharpe = mean_return / std_return * np.sqrt(252) if std_return > 0 else 0
         
         # Approximate max drawdown from returns
-        max_dd = env.state.drawdown if hasattr(env, 'state') else 0.0
+        max_dd = getattr(env, 'state', {}).drawdown if hasattr(env, 'state') and hasattr(env.state, 'drawdown') else 0.0
         
         return wins, losses, sharpe, max_dd
+    
+    def _get_unwrapped_env(self):
+        """
+        Safely unwrap the environment to get access to the base StockTradingEnv.
+        This handles both VecEnv wrapped environments and regular environments.
+        
+        Returns:
+            The unwrapped StockTradingEnv or None if it can't be unwrapped
+        """
+        env = self.eval_env
+        
+        # Handle VecEnv
+        if isinstance(env, VecEnv):
+            try:
+                # For VecEnv, first get the first env
+                if hasattr(env, 'envs'):
+                    base_env = env.envs[0]
+                elif hasattr(env, 'env'):
+                    # Sometimes VecEnv has a different structure
+                    base_env = env.env
+                else:
+                    # If we can't find a structure we recognize, try the first venv
+                    base_env = env.venv.envs[0] if hasattr(env, 'venv') and hasattr(env.venv, 'envs') else None
+                
+                # Now unwrap the base env until we get to StockTradingEnv
+                while base_env is not None and hasattr(base_env, 'env'):
+                    if hasattr(base_env, 'env') and base_env.__class__.__name__ == 'StockTradingEnv':
+                        return base_env
+                    base_env = base_env.env
+                
+                # If we've reached the innermost env
+                if base_env is not None and base_env.__class__.__name__ == 'StockTradingEnv':
+                    return base_env
+            except Exception as e:
+                print(f"Warning: Could not unwrap VecEnv: {e}")
+                return None
+        
+        # Handle non-VecEnv (direct environment)
+        else:
+            # Unwrap until we get to StockTradingEnv
+            current_env = env
+            while current_env is not None:
+                if current_env.__class__.__name__ == 'StockTradingEnv':
+                    return current_env
+                
+                if hasattr(current_env, 'env'):
+                    current_env = current_env.env
+                else:
+                    break
+        
+        # If we couldn't find it
+        if self.verbose > 0:
+            print("Warning: Could not find StockTradingEnv in environment chain.")
+        return None

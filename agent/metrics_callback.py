@@ -1,30 +1,24 @@
 """
-agent/callbacks.py
+agent/metrics_callback.py
 
-Implements custom callbacks for the reinforcement learning training process.
+Implements the MetricsLoggerCallback for capturing training metrics.
 
-This module provides specialized callbacks for:
-- Curriculum learning progression
-- Performance metrics logging
-- Early stopping
-- Trading-specific visualizations
+This module provides a callback for:
+- Logging detailed trading metrics 
+- Recording environment diagnostics
+- Tracking performance over time
 
 Author: [Your Name]
-Date: March 10, 2025
+Date: March 13, 2025
 """
 
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from typing import Dict, List, Optional, Any, Union, Tuple, Tuple
-from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
+from typing import Dict, Any
+from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.evaluation import evaluate_policy
-from stable_baselines3.common.vec_env import VecEnv
-
-
-
-
+from stable_baselines3.common.vec_env import VecEnv, DummyVecEnv, is_vecenv_wrapped
 
 class MetricsLoggerCallback(BaseCallback):
     """
@@ -82,25 +76,38 @@ class MetricsLoggerCallback(BaseCallback):
                 return_episode_rewards=False
             )
             
-            # Get diagnostics from the environment
-            env = self.eval_env.envs[0].env.env  # Unwrap Monitor -> StockTradingEnv
+            # Get diagnostics from the environment 
+            env = self._get_unwrapped_env()
+            
+            # Initialize diagnostics with default values
             diagnostics = {
-                'sl_count': env.stop_loss_count,
-                'tp_count': env.take_profit_count,
-                'max_hold_count': env.max_holding_count,
-                'exit_count': env.exit_signal_count
+                'sl_count': 0,
+                'tp_count': 0,
+                'max_hold_count': 0,
+                'exit_count': 0
             }
+            
+            # Extract counters if they exist in the environment
+            if env is not None:
+                diagnostics['sl_count'] = getattr(env, 'stop_loss_count', 0)
+                diagnostics['tp_count'] = getattr(env, 'take_profit_count', 0)
+                diagnostics['max_hold_count'] = getattr(env, 'max_holding_count', 0)
+                diagnostics['exit_count'] = getattr(env, 'exit_signal_count', 0)
+                
+                # Reset diagnostics after evaluation
+                if hasattr(env, 'stop_loss_count'):
+                    env.stop_loss_count = 0
+                if hasattr(env, 'take_profit_count'):
+                    env.take_profit_count = 0
+                if hasattr(env, 'max_holding_count'):
+                    env.max_holding_count = 0
+                if hasattr(env, 'exit_signal_count'):
+                    env.exit_signal_count = 0
             
             # Calculate win rate
             trades = diagnostics['sl_count'] + diagnostics['tp_count'] + diagnostics['max_hold_count'] + diagnostics['exit_count']
             win_rate = (diagnostics['tp_count'] + diagnostics['exit_count']) / max(trades, 1)
             loss_rate = diagnostics['sl_count'] / max(trades, 1)
-            
-            # Reset diagnostics after evaluation
-            env.stop_loss_count = 0
-            env.take_profit_count = 0
-            env.max_holding_count = 0
-            env.exit_signal_count = 0
             
             # Get average episode length
             ep_len = 0
@@ -117,3 +124,57 @@ class MetricsLoggerCallback(BaseCallback):
                 print(f"SL: {diagnostics['sl_count']}, TP: {diagnostics['tp_count']}, Max Hold: {diagnostics['max_hold_count']}, Exit: {diagnostics['exit_count']}")
                 
         return True
+
+    def _get_unwrapped_env(self):
+        """
+        Safely unwrap the environment to get access to the base StockTradingEnv.
+        This handles both VecEnv wrapped environments and regular environments.
+        
+        Returns:
+            The unwrapped StockTradingEnv or None if it can't be unwrapped
+        """
+        env = self.eval_env
+        
+        # Handle VecEnv
+        if isinstance(env, VecEnv):
+            try:
+                # For VecEnv, first get the first env
+                if hasattr(env, 'envs'):
+                    base_env = env.envs[0]
+                elif hasattr(env, 'env'):
+                    # Sometimes VecEnv has a different structure
+                    base_env = env.env
+                else:
+                    # If we can't find a structure we recognize, try the first venv
+                    base_env = env.venv.envs[0] if hasattr(env, 'venv') and hasattr(env.venv, 'envs') else None
+                
+                # Now unwrap the base env until we get to StockTradingEnv
+                while base_env is not None and hasattr(base_env, 'env'):
+                    if hasattr(base_env, 'env') and base_env.__class__.__name__ == 'StockTradingEnv':
+                        return base_env
+                    base_env = base_env.env
+                
+                # If we've reached the innermost env
+                if base_env is not None and base_env.__class__.__name__ == 'StockTradingEnv':
+                    return base_env
+            except Exception as e:
+                print(f"Warning: Could not unwrap VecEnv: {e}")
+                return None
+        
+        # Handle non-VecEnv (direct environment)
+        else:
+            # Unwrap until we get to StockTradingEnv
+            current_env = env
+            while current_env is not None:
+                if current_env.__class__.__name__ == 'StockTradingEnv':
+                    return current_env
+                
+                if hasattr(current_env, 'env'):
+                    current_env = current_env.env
+                else:
+                    break
+        
+        # If we couldn't find it
+        if self.verbose > 0:
+            print("Warning: Could not find StockTradingEnv in environment chain.")
+        return None

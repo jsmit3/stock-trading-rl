@@ -1,29 +1,25 @@
-
 """
-agent/callbacks.py
+agent/visualization_callback.py
 
-Implements custom callbacks for the reinforcement learning training process.
+Implements visualization callback for training process.
 
-This module provides specialized callbacks for:
-- Curriculum learning progression
-- Performance metrics logging
-- Early stopping
-- Trading-specific visualizations
+This module creates visualizations of trading activity during training:
+- Portfolio value charts
+- Position size tracking
+- Trade entry and exit points
+- Equity curves and drawdowns
 
 Author: [Your Name]
-Date: March 10, 2025
+Date: March 13, 2025
 """
 
 import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from typing import Dict, List, Optional, Any, Union, Tuple, Tuple
-from stable_baselines3.common.callbacks import BaseCallback, EvalCallback
-from stable_baselines3.common.evaluation import evaluate_policy
+from typing import Dict, List, Any
+from stable_baselines3.common.callbacks import BaseCallback
 from stable_baselines3.common.vec_env import VecEnv
-
-
 
 
 class VisualizeTradesCallback(BaseCallback):
@@ -80,7 +76,7 @@ class VisualizeTradesCallback(BaseCallback):
         episodes_data = []
         
         for episode in range(self.n_eval_episodes):
-            # Reset environment
+            # Reset environment - IMPORTANT: Always reset before starting
             obs, _ = self.eval_env.reset()
             done = False
             
@@ -95,41 +91,62 @@ class VisualizeTradesCallback(BaseCallback):
             }
             
             # Run episode
+            step_count = 0
             while not done:
                 # Get action from model
                 action, _ = self.model.predict(obs, deterministic=True)
                 
                 # Take action in environment
-                next_obs, reward, done, _, info = self.eval_env.step(action)
+                try:
+                    next_obs, reward, terminated, truncated, info = self.eval_env.step(action)
+                    
+                    # Update done flag
+                    done = terminated or truncated
+                    
+                    # Record data
+                    if 'price' in info:
+                        episode_data['prices'].append(info['price'])
+                    elif 'close' in info:
+                        episode_data['prices'].append(info['close'])
+                    else:
+                        # If no price info, use a placeholder
+                        episode_data['prices'].append(0.0)
+                        
+                    episode_data['positions'].append(info.get('current_position', 0))
+                    episode_data['portfolio_values'].append(info.get('portfolio_value', 0))
+                    episode_data['drawdowns'].append(info.get('drawdown', 0))
+                    
+                    # Record trade if completed
+                    if info.get('trade_completed', False) or info.get('trade_executed', False):
+                        trade_info = {
+                            'step': step_count,
+                            'price': info.get('trade_price', 0),
+                            'type': info.get('trade_type', 'unknown'),
+                            'profit': info.get('trade_profit', 0),
+                            'reason': info.get('trade_reason', 'unknown')
+                        }
+                        episode_data['trades'].append(trade_info)
+                    
+                    # Calculate returns
+                    if len(episode_data['portfolio_values']) > 1:
+                        ret = (episode_data['portfolio_values'][-1] / episode_data['portfolio_values'][-2]) - 1
+                        episode_data['returns'].append(ret)
+                    else:
+                        episode_data['returns'].append(0)
+                    
+                    # Update observation
+                    obs = next_obs
+                    step_count += 1
                 
-                # Record data
-                episode_data['prices'].append(info['price'])
-                episode_data['positions'].append(info['current_position'])
-                episode_data['portfolio_values'].append(info['portfolio_value'])
-                episode_data['drawdowns'].append(info['drawdown'])
-                
-                # Record trade if completed
-                if info.get('trade_completed', False):
-                    trade_info = {
-                        'step': info['step'],
-                        'price': info['trade_price'],
-                        'type': info['trade_type'],
-                        'profit': info.get('trade_profit', 0),
-                        'reason': info.get('trade_reason', 'unknown')
-                    }
-                    episode_data['trades'].append(trade_info)
-                
-                # Calculate returns
-                if len(episode_data['portfolio_values']) > 1:
-                    ret = (episode_data['portfolio_values'][-1] / episode_data['portfolio_values'][-2]) - 1
-                    episode_data['returns'].append(ret)
-                else:
-                    episode_data['returns'].append(0)
-                
-                # Update observation
-                obs = next_obs
+                except Exception as e:
+                    if self.verbose > 0:
+                        print(f"Error during visualization episode: {e}")
+                    # Break out of the loop if we hit an error
+                    break
             
-            episodes_data.append(episode_data)
+            # Only add episodes with meaningful data
+            if len(episode_data['portfolio_values']) > 0:
+                episodes_data.append(episode_data)
         
         # Create visualizations for each episode
         for i, episode_data in enumerate(episodes_data):
@@ -147,6 +164,9 @@ class VisualizeTradesCallback(BaseCallback):
             episode_data: Data for the episode
             episode_num: Episode number
         """
+        if len(episode_data['portfolio_values']) < 2:
+            return  # Skip if not enough data
+            
         plt.figure(figsize=(12, 8))
         
         # Plot equity curve
@@ -160,9 +180,10 @@ class VisualizeTradesCallback(BaseCallback):
         
         # Plot drawdown
         plt.subplot(2, 1, 2)
-        plt.plot(np.array(episode_data['drawdowns']) * 100, label='Drawdown', color='red')
-        plt.fill_between(range(len(episode_data['drawdowns'])), 
-                         np.array(episode_data['drawdowns']) * 100, 
+        drawdowns = np.array(episode_data['drawdowns']) * 100  # Convert to percentage
+        plt.plot(drawdowns, label='Drawdown', color='red')
+        plt.fill_between(range(len(drawdowns)), 
+                         drawdowns, 
                          0, 
                          color='red', 
                          alpha=0.3)
@@ -185,6 +206,9 @@ class VisualizeTradesCallback(BaseCallback):
             episode_data: Data for the episode
             episode_num: Episode number
         """
+        if len(episode_data['prices']) < 2:
+            return  # Skip if not enough data
+            
         plt.figure(figsize=(12, 8))
         
         # Plot price and trades
@@ -192,14 +216,18 @@ class VisualizeTradesCallback(BaseCallback):
         plt.plot(episode_data['prices'], label='Price')
         
         # Mark buy trades
-        buy_steps = [t['step'] for t in episode_data['trades'] if t['type'] == 'buy']
-        buy_prices = [episode_data['prices'][min(s, len(episode_data['prices'])-1)] for s in buy_steps]
-        plt.scatter(buy_steps, buy_prices, color='green', marker='^', s=100, label='Buy')
+        buy_trades = [t for t in episode_data['trades'] if t['type'] == 'buy']
+        if buy_trades:
+            buy_steps = [t['step'] for t in buy_trades]
+            buy_prices = [episode_data['prices'][min(s, len(episode_data['prices'])-1)] for s in buy_steps]
+            plt.scatter(buy_steps, buy_prices, color='green', marker='^', s=100, label='Buy')
         
         # Mark sell trades
-        sell_steps = [t['step'] for t in episode_data['trades'] if t['type'] == 'sell']
-        sell_prices = [episode_data['prices'][min(s, len(episode_data['prices'])-1)] for s in sell_steps]
-        plt.scatter(sell_steps, sell_prices, color='red', marker='v', s=100, label='Sell')
+        sell_trades = [t for t in episode_data['trades'] if t['type'] == 'sell']
+        if sell_trades:
+            sell_steps = [t['step'] for t in sell_trades]
+            sell_prices = [episode_data['prices'][min(s, len(episode_data['prices'])-1)] for s in sell_steps]
+            plt.scatter(sell_steps, sell_prices, color='red', marker='v', s=100, label='Sell')
         
         plt.title(f'Price and Trades - Episode {episode_num+1}')
         plt.xlabel('Step')

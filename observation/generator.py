@@ -17,6 +17,7 @@ Date: March 13, 2025
 
 import numpy as np
 import pandas as pd
+import traceback
 from typing import List, Dict, Optional, Tuple, Union
 import random
 
@@ -707,7 +708,7 @@ class ObservationGenerator:
                 
             # 3. Drawdown
             features[2] = min(drawdown, 1.0)  # Clip to [0, 1]
-            
+                
             # 4. Proximity to peak (1 - drawdown)
             features[3] = 1.0 - features[2]
             
