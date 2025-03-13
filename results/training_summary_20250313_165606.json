@@ -1,0 +1,13 @@
+{
+  "timestamp": "20250313_165606",
+  "training_results": {
+    "AAPL_daily": {
+      "symbol": "AAPL_daily",
+      "status": "failed",
+      "reason": "exception",
+      "error": "could not broadcast input array from shape (468,) into shape (325,)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\code\\stock-trading-rl\\train.py\", line 298, in train_on_symbol\n    agent.train(\n  File \"C:\\code\\stock-trading-rl\\agent\\model.py\", line 206, in train\n    self.model.learn(\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\sac\\sac.py\", line 307, in learn\n    return super().learn(\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\off_policy_algorithm.py\", line 314, in learn\n    total_timesteps, callback = self._setup_learn(\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\off_policy_algorithm.py\", line 297, in _setup_learn\n    return super()._setup_learn(\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\base_class.py\", line 423, in _setup_learn\n    self._last_obs = self.env.reset()  # type: ignore[assignment]\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\vec_env\\dummy_vec_env.py\", line 78, in reset\n    self._save_obs(env_idx, obs)\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\vec_env\\dummy_vec_env.py\", line 108, in _save_obs\n    self.buf_obs[key][env_idx] = obs\nValueError: could not broadcast input array from shape (468,) into shape (325,)\n"
+    }
+  },
+  "evaluation_results": {}
+}

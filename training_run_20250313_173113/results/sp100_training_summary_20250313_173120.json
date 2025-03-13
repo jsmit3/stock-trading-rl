@@ -1,0 +1,25 @@
+{
+  "training_params": {
+    "initial_capital": 100000.0,
+    "window_size": 20,
+    "max_position_pct": 0.25,
+    "transaction_cost_pct": 0.0015,
+    "curriculum_level": 1,
+    "learning_rate": 3e-05,
+    "buffer_size": 200000,
+    "batch_size": 256,
+    "total_timesteps": 200000,
+    "seed": 42,
+    "observation_dim": 325
+  },
+  "training_results": {
+    "AAPL": {
+      "symbol": "AAPL",
+      "status": "failed",
+      "reason": "exception",
+      "error": "'StockTradingEnv' object has no attribute 'envs'",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\code\\stock-trading-rl\\sp100_trainer.py\", line 341, in train_on_symbol\n    agent.train(\n  File \"C:\\code\\stock-trading-rl\\agent\\model.py\", line 206, in train\n    self.model.learn(\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\sac\\sac.py\", line 307, in learn\n    return super().learn(\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\off_policy_algorithm.py\", line 328, in learn\n    rollout = self.collect_rollouts(\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\off_policy_algorithm.py\", line 568, in collect_rollouts\n    if not callback.on_step():\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\callbacks.py\", line 114, in on_step\n    return self._on_step()\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\callbacks.py\", line 219, in _on_step\n    continue_training = callback.on_step() and continue_training\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\stable_baselines3\\common\\callbacks.py\", line 114, in on_step\n    return self._on_step()\n  File \"C:\\code\\stock-trading-rl\\agent\\metrics_callback.py\", line 86, in _on_step\n    env = self.eval_env.envs[0].env.env  # Unwrap Monitor -> StockTradingEnv\n  File \"C:\\Users\\johan\\miniconda3\\envs\\stock-trading-rl\\lib\\site-packages\\gymnasium\\core.py\", line 315, in __getattr__\n    return getattr(self.env, name)\nAttributeError: 'StockTradingEnv' object has no attribute 'envs'\n"
+    }
+  },
+  "evaluation_results": {}
+}
