@@ -1,0 +1,14 @@
+{
+  "symbol": "INTU",
+  "status": "success",
+  "initial_value": 99942.7674804681,
+  "final_value": 100057.82982645374,
+  "total_return": 0.11512823677624073,
+  "avg_daily_return": 0.001967014498798584,
+  "volatility": 1.5760217213035632,
+  "sharpe_ratio": 0.3145182880393607,
+  "max_drawdown": 0.6005828638710662,
+  "num_steps": 61,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "GM",
+  "status": "success",
+  "initial_value": 99979.60094979312,
+  "final_value": 100837.36805013096,
+  "total_return": 0.8579421123800834,
+  "avg_daily_return": 0.013852221452330346,
+  "volatility": 1.912041332136955,
+  "sharpe_ratio": 1.825671729640839,
+  "max_drawdown": 0.965741529710543,
+  "num_steps": 63,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "PM",
+  "status": "success",
+  "initial_value": 100071.81756414707,
+  "final_value": 100079.5492996906,
+  "total_return": 0.007726186784373645,
+  "avg_daily_return": 0.00010462451052974429,
+  "volatility": 1.2372330651197363,
+  "sharpe_ratio": 0.02130995153362151,
+  "max_drawdown": 0.5423382011065416,
+  "num_steps": 105,
+  "num_buy_trades": 7,
+  "num_sell_trades": 6
+}

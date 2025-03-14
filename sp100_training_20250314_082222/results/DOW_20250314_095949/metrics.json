@@ -1,0 +1,14 @@
+{
+  "symbol": "DOW",
+  "status": "success",
+  "initial_value": 99856.45698394212,
+  "final_value": 97797.4061592409,
+  "total_return": -2.0620106970472007,
+  "avg_daily_return": -0.013682231885242096,
+  "volatility": 1.111213087880617,
+  "sharpe_ratio": -3.102845415236358,
+  "max_drawdown": 2.2074066566029926,
+  "num_steps": 153,
+  "num_buy_trades": 11,
+  "num_sell_trades": 10
+}

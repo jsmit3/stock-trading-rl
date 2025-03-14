@@ -1,0 +1,14 @@
+{
+  "symbol": "AAPL",
+  "status": "success",
+  "initial_value": 100051.5614716484,
+  "final_value": 100502.93732066463,
+  "total_return": 0.4511432329260989,
+  "avg_daily_return": 0.004308214586433554,
+  "volatility": 1.033092513020626,
+  "sharpe_ratio": 1.0508933731470957,
+  "max_drawdown": 0.4014117877963741,
+  "num_steps": 106,
+  "num_buy_trades": 7,
+  "num_sell_trades": 6
+}

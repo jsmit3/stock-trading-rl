@@ -1,0 +1,14 @@
+{
+  "symbol": "GILD",
+  "status": "success",
+  "initial_value": 100012.04222189113,
+  "final_value": 101507.52824823183,
+  "total_return": 1.4953059582792472,
+  "avg_daily_return": 0.00881241996222212,
+  "volatility": 1.2211542413457772,
+  "sharpe_ratio": 1.8185498238392976,
+  "max_drawdown": 0.6376224111778149,
+  "num_steps": 170,
+  "num_buy_trades": 11,
+  "num_sell_trades": 9
+}

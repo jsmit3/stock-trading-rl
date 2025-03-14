@@ -1,0 +1,14 @@
+{
+  "symbol": "SO",
+  "status": "success",
+  "initial_value": 100037.73602769927,
+  "final_value": 99951.99128519847,
+  "total_return": -0.08571239804653352,
+  "avg_daily_return": -0.0007242502255675962,
+  "volatility": 0.8684994921701487,
+  "sharpe_ratio": -0.21014526604614103,
+  "max_drawdown": 0.8295623270069431,
+  "num_steps": 117,
+  "num_buy_trades": 7,
+  "num_sell_trades": 6
+}

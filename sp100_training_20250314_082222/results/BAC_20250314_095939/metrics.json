@@ -1,0 +1,14 @@
+{
+  "symbol": "BAC",
+  "status": "success",
+  "initial_value": 100004.5050595065,
+  "final_value": 100484.33418016318,
+  "total_return": 0.4798075050430617,
+  "avg_daily_return": 0.005012671831257828,
+  "volatility": 1.1562845478324502,
+  "sharpe_ratio": 1.0924588621762108,
+  "max_drawdown": 0.49615888173278244,
+  "num_steps": 97,
+  "num_buy_trades": 7,
+  "num_sell_trades": 6
+}

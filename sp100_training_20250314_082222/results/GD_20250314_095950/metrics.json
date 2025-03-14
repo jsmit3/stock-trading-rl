@@ -1,0 +1,14 @@
+{
+  "symbol": "GD",
+  "status": "success",
+  "initial_value": 100076.95460584485,
+  "final_value": 99294.63019778467,
+  "total_return": -0.7817228363326767,
+  "avg_daily_return": -0.0074535561532040355,
+  "volatility": 1.0135643551459685,
+  "sharpe_ratio": -1.8531592405268775,
+  "max_drawdown": 0.9974750946283495,
+  "num_steps": 106,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "WFC",
+  "status": "success",
+  "initial_value": 100009.05253436176,
+  "final_value": 100643.1888335604,
+  "total_return": 0.6340788989884327,
+  "avg_daily_return": 0.006024837086591833,
+  "volatility": 1.7638696744774176,
+  "sharpe_ratio": 0.8607546055073244,
+  "max_drawdown": 0.8225219880771193,
+  "num_steps": 107,
+  "num_buy_trades": 10,
+  "num_sell_trades": 9
+}

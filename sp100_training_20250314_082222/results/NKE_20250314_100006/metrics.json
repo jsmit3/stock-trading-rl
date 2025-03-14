@@ -1,0 +1,14 @@
+{
+  "symbol": "NKE",
+  "status": "success",
+  "initial_value": 99930.71270396485,
+  "final_value": 99899.4019818739,
+  "total_return": -0.031332431485497914,
+  "avg_daily_return": -0.0002211751772708261,
+  "volatility": 1.3805019604335014,
+  "sharpe_ratio": -0.040373825079354525,
+  "max_drawdown": 1.0906685574808195,
+  "num_steps": 122,
+  "num_buy_trades": 9,
+  "num_sell_trades": 7
+}

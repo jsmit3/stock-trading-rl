@@ -72,10 +72,10 @@ class TradingAgent:
         
         # Create or load the model
         if model_path is not None and os.path.exists(model_path + ".zip"):
-            print(f"Loading model from {model_path}.zip")
+            # Less verbose output
             self.model = SAC.load(model_path, env=env, device=self.device)
         else:
-            print("Creating new model")
+            # Less verbose output
             self.model = self._create_model(
                 learning_rate=learning_rate,
                 buffer_size=buffer_size,

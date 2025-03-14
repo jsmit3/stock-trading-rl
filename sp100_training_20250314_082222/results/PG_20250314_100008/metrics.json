@@ -1,0 +1,14 @@
+{
+  "symbol": "PG",
+  "status": "success",
+  "initial_value": 99946.4714324918,
+  "final_value": 99819.44545805374,
+  "total_return": -0.12709400603888588,
+  "avg_daily_return": -0.002481178814116602,
+  "volatility": 0.7909436312744257,
+  "sharpe_ratio": -0.7905203815219098,
+  "max_drawdown": 0.39396189156936207,
+  "num_steps": 52,
+  "num_buy_trades": 3,
+  "num_sell_trades": 2
+}

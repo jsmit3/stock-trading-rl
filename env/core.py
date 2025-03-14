@@ -63,7 +63,9 @@ class StockTradingEnv(gym.Env):
         curriculum_level: int = 1,
         debug_mode: bool = False,
         min_episode_length: int = 20,
-        observation_generator: Optional[ObservationGenerator] = None  # New parameter
+        observation_generator: Optional[ObservationGenerator] = None,  # Custom observation generator
+        observation_dim: Optional[int] = None,  # Fixed observation dimension
+        symbol_feature_dim: int = 0  # Symbol feature dimension
     ):
         """
         Initialize the stock trading environment.
@@ -109,6 +111,8 @@ class StockTradingEnv(gym.Env):
         self.curriculum_level = curriculum_level
         self.debug_mode = debug_mode
         self.min_episode_length = min_episode_length
+        self.observation_dim = observation_dim
+        self.symbol_feature_dim = symbol_feature_dim
         
         # Process and validate input data
         self.data_processor = DataProcessor(price_data, window_size=window_size)
@@ -129,9 +133,16 @@ class StockTradingEnv(gym.Env):
         if observation_generator is not None:
             self.observation_generator = observation_generator
         else:
+            # Create observation generator with fixed dimension if specified
+            fixed_dim = observation_dim
+            if fixed_dim is not None and symbol_feature_dim > 0:
+                # Adjust fixed_dim to account for symbol features
+                fixed_dim = fixed_dim - symbol_feature_dim
+            
             self.observation_generator = ObservationGenerator(
                 window_size=window_size, 
-                include_sentiment=include_sentiment
+                include_sentiment=include_sentiment,
+                fixed_dim=fixed_dim
             )
         
         self.action_interpreter = ActionInterpreter(
@@ -176,11 +187,23 @@ class StockTradingEnv(gym.Env):
         # Generate a dummy observation to determine observation space shape
         dummy_observation = self._get_observation()
         
-        # Define the observation space now that we know the shape
+        # Define the observation space with the correct shape
+        if self.observation_dim is not None:
+            # Use fixed observation dimension if specified
+            obs_shape = (self.observation_dim,)
+            
+            # If dummy observation doesn't match, pad or trim it
+            if dummy_observation.shape[0] != self.observation_dim:
+                print(f"Warning: Observation shape mismatch - expected {self.observation_dim}, got {dummy_observation.shape[0]}")
+                print(f"Using fixed observation dimension: {self.observation_dim}")
+        else:
+            # Use the actual shape from the dummy observation
+            obs_shape = dummy_observation.shape
+            
         self.observation_space = spaces.Box(
             low=-np.inf,
             high=np.inf,
-            shape=dummy_observation.shape,
+            shape=obs_shape,
             dtype=np.float32
         )
         
@@ -608,7 +631,23 @@ class StockTradingEnv(gym.Env):
                 drawdown=self.state.drawdown
             )
             
-            return observation
+            # If symbol features are enabled, add empty placeholder for compatibility with multi-stock env
+            if self.symbol_feature_dim > 0 and self.observation_dim is not None:
+                # Create a combined observation with base observation and empty symbol features
+                base_obs_dim = self.observation_dim - self.symbol_feature_dim
+                
+                # Create output observation of the correct full size
+                combined_observation = np.zeros(self.observation_dim, dtype=np.float32)
+                
+                # Copy base observation (up to the appropriate size)
+                base_obs_size = min(len(observation), base_obs_dim)
+                combined_observation[:base_obs_size] = observation[:base_obs_size]
+                
+                # Symbol features are left as zeros (will be populated in multi-stock env)
+                return combined_observation
+            else:
+                # Return the regular observation
+                return observation
             
         except Exception as e:
             if self.debug_mode:
@@ -618,9 +657,12 @@ class StockTradingEnv(gym.Env):
             if hasattr(self, 'observation_space'):
                 return np.zeros(self.observation_space.shape, dtype=np.float32)
             else:
-                # If observation_space not defined yet, create a basic observation
-                # Use the actual size that matches your final size (325) instead of arbitrary 100
-                return np.zeros(325, dtype=np.float32)
+                # If observation_space not defined yet, use the specified dimension or default
+                if self.observation_dim is not None:
+                    return np.zeros(self.observation_dim, dtype=np.float32)
+                else:
+                    # Use a reasonable default that matches your typical observation size
+                    return np.zeros(325, dtype=np.float32)
     
     def _execute_trading_logic(
         self, 

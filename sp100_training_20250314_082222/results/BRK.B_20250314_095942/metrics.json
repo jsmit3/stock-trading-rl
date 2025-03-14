@@ -1,0 +1,14 @@
+{
+  "symbol": "BRK.B",
+  "status": "success",
+  "initial_value": 99969.13361002949,
+  "final_value": 100073.48127175047,
+  "total_return": 0.10437988002180987,
+  "avg_daily_return": 0.0006150827050350056,
+  "volatility": 0.7791396466858118,
+  "sharpe_ratio": 0.1989384602980235,
+  "max_drawdown": 0.5076356673690229,
+  "num_steps": 174,
+  "num_buy_trades": 10,
+  "num_sell_trades": 9
+}

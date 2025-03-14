@@ -295,8 +295,16 @@ class DataProcessor:
                 print(f"Detected {vol_anomalies.sum()} volume anomalies")
                 
                 # Replace anomalous volumes with the rolling median
-                cleaned_data.loc[vol_anomalies, 'volume'] = \
-                    cleaned_data.loc[vol_anomalies, 'volume'].rolling(window=5, min_periods=1, center=True).median()
+                if vol_anomalies.sum() > 0:
+                    valid_indices = ~vol_anomalies
+                    x_valid = np.where(valid_indices)[0]
+                    y_valid = cleaned_data.loc[valid_indices, 'volume'].values
+                    # Use interpolation for a smoother result
+                    anomaly_indices = np.where(vol_anomalies)[0]
+                    if len(x_valid) > 0 and len(anomaly_indices) > 0:
+                        interpolated = np.interp(anomaly_indices, x_valid, y_valid)
+                        # Convert to integer to avoid dtype warnings
+                        cleaned_data.loc[vol_anomalies, 'volume'] = interpolated.astype(np.int64)
                 
         return cleaned_data
     

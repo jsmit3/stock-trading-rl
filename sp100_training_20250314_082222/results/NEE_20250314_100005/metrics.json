@@ -1,0 +1,14 @@
+{
+  "symbol": "NEE",
+  "status": "success",
+  "initial_value": 100040.91895938214,
+  "final_value": 99109.56268970249,
+  "total_return": -0.9309753242648489,
+  "avg_daily_return": -0.012609540811660833,
+  "volatility": 1.215637339149134,
+  "sharpe_ratio": -2.6139410021434877,
+  "max_drawdown": 1.1410820917176372,
+  "num_steps": 75,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

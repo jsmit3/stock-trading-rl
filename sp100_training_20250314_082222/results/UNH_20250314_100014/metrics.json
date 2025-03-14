@@ -1,0 +1,14 @@
+{
+  "symbol": "UNH",
+  "status": "success",
+  "initial_value": 100066.03852256715,
+  "final_value": 99219.29886123579,
+  "total_return": -0.846180855995815,
+  "avg_daily_return": -0.007823714983493102,
+  "volatility": 1.4939484202239068,
+  "sharpe_ratio": -1.3197083307232054,
+  "max_drawdown": 1.3972766305037037,
+  "num_steps": 109,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

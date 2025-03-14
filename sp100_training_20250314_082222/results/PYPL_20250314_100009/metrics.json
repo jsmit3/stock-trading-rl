@@ -1,0 +1,14 @@
+{
+  "symbol": "PYPL",
+  "status": "success",
+  "initial_value": 99944.3907148086,
+  "final_value": 100188.60185308334,
+  "total_return": 0.24434701790478908,
+  "avg_daily_return": 0.005131621190224839,
+  "volatility": 1.5412178798871863,
+  "sharpe_ratio": 0.8390562793310681,
+  "max_drawdown": 0.39113353410858587,
+  "num_steps": 49,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

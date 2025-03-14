@@ -1,0 +1,14 @@
+{
+  "symbol": "WMT",
+  "status": "success",
+  "initial_value": 99903.96463258028,
+  "final_value": 101253.07772713684,
+  "total_return": 1.3504099657288382,
+  "avg_daily_return": 0.013170412486720526,
+  "volatility": 0.9744601615475943,
+  "sharpe_ratio": 3.4059308708758027,
+  "max_drawdown": 0.27763975176055816,
+  "num_steps": 103,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

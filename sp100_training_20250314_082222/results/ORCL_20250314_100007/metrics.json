@@ -1,0 +1,14 @@
+{
+  "symbol": "ORCL",
+  "status": "success",
+  "initial_value": 99947.92377403476,
+  "final_value": 99830.5842368546,
+  "total_return": -0.11740067502097329,
+  "avg_daily_return": -0.001911594650723103,
+  "volatility": 1.5258112705223366,
+  "sharpe_ratio": -0.3157152272294544,
+  "max_drawdown": 0.8589315410912423,
+  "num_steps": 61,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

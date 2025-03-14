@@ -1,0 +1,14 @@
+{
+  "symbol": "SBUX",
+  "status": "success",
+  "initial_value": 99864.8662249708,
+  "final_value": 99603.93391124142,
+  "total_return": -0.2612853985520469,
+  "avg_daily_return": -0.0047310658457755395,
+  "volatility": 1.1375975098354516,
+  "sharpe_ratio": -1.0480232092876913,
+  "max_drawdown": 0.9470892385537839,
+  "num_steps": 56,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "COF",
+  "status": "success",
+  "initial_value": 99967.48991113318,
+  "final_value": 100703.16951771274,
+  "total_return": 0.7359188544531436,
+  "avg_daily_return": 0.006923087149908274,
+  "volatility": 1.883727470360853,
+  "sharpe_ratio": 0.9261519987510085,
+  "max_drawdown": 0.7705233732467514,
+  "num_steps": 108,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

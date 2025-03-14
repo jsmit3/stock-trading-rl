@@ -1,0 +1,14 @@
+{
+  "symbol": "VZ",
+  "status": "success",
+  "initial_value": 99934.09224693128,
+  "final_value": 99602.01331238996,
+  "total_return": -0.3322979446501284,
+  "avg_daily_return": -0.001846312232429591,
+  "volatility": 1.0908159918292382,
+  "sharpe_ratio": -0.4265345264988494,
+  "max_drawdown": 0.8180045320560902,
+  "num_steps": 179,
+  "num_buy_trades": 11,
+  "num_sell_trades": 10
+}

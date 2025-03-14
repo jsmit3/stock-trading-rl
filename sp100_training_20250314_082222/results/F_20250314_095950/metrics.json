@@ -1,0 +1,14 @@
+{
+  "symbol": "F",
+  "status": "success",
+  "initial_value": 100019.38023851617,
+  "final_value": 99523.42134289884,
+  "total_return": -0.49586279622469975,
+  "avg_daily_return": -0.006761078642141535,
+  "volatility": 1.5584652027426398,
+  "sharpe_ratio": -1.0932498299103994,
+  "max_drawdown": 0.9114013649602799,
+  "num_steps": 74,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

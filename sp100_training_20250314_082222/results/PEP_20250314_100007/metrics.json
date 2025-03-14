@@ -1,0 +1,14 @@
+{
+  "symbol": "PEP",
+  "status": "success",
+  "initial_value": 99906.21192472581,
+  "final_value": 99128.80227922165,
+  "total_return": -0.7781394475149361,
+  "avg_daily_return": -0.005265463823080037,
+  "volatility": 0.7987064344857112,
+  "sharpe_ratio": -1.6613073666679061,
+  "max_drawdown": 0.9952316977801489,
+  "num_steps": 149,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "HD",
+  "status": "success",
+  "initial_value": 100034.79267769156,
+  "final_value": 100458.5291182265,
+  "total_return": 0.42358906255768325,
+  "avg_daily_return": 0.00442310853872481,
+  "volatility": 1.0025631417826917,
+  "sharpe_ratio": 1.11177371808892,
+  "max_drawdown": 0.601330433541133,
+  "num_steps": 97,
+  "num_buy_trades": 6,
+  "num_sell_trades": 4
+}

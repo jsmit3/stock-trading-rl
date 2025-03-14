@@ -1,0 +1,14 @@
+{
+  "symbol": "IBM",
+  "status": "success",
+  "initial_value": 100014.00247803683,
+  "final_value": 100145.07382582157,
+  "total_return": 0.13105299711759777,
+  "avg_daily_return": 0.0017735771677201602,
+  "volatility": 1.1733001364167976,
+  "sharpe_ratio": 0.3809267828353094,
+  "max_drawdown": 0.7160736091814954,
+  "num_steps": 76,
+  "num_buy_trades": 5,
+  "num_sell_trades": 3
+}

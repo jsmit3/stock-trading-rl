@@ -1,0 +1,14 @@
+{
+  "symbol": "CVS",
+  "status": "success",
+  "initial_value": 100024.42083633177,
+  "final_value": 97869.08688198887,
+  "total_return": -2.154807732273345,
+  "avg_daily_return": -0.037439231489323335,
+  "volatility": 2.372863758809785,
+  "sharpe_ratio": -3.976075870467113,
+  "max_drawdown": 2.3998020354938228,
+  "num_steps": 59,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

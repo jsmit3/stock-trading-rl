@@ -1,0 +1,14 @@
+{
+  "symbol": "MDT",
+  "status": "success",
+  "initial_value": 99956.10577881093,
+  "final_value": 99351.23644815852,
+  "total_return": -0.605134949925823,
+  "avg_daily_return": -0.009183949440902311,
+  "volatility": 0.7838411307298303,
+  "sharpe_ratio": -2.952582058245015,
+  "max_drawdown": 0.8695966902142322,
+  "num_steps": 67,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

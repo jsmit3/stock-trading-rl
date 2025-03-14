@@ -294,7 +294,7 @@ class MultiStockTrainer:
             max_position_pct=self.training_params.get('max_position_pct', 0.25),
             min_position_pct=self.training_params.get('min_position_pct', 0.05),
             curriculum_level=self.training_params.get('curriculum_level', 1),
-            debug_mode=True if for_training else False,
+            debug_mode=False,  # Set to False to reduce output verbosity
             min_episode_length=20,
             observation_generator=self.observation_generator,
             observation_dim=self.observation_dim,
@@ -303,9 +303,7 @@ class MultiStockTrainer:
         
         # Test the environment
         obs, info = env.reset()
-        print(f"Environment created successfully")
-        print(f"Observation shape: {obs.shape}")
-        print(f"Initial info: symbol={info['symbol']}, date={info['date']}")
+        print(f"Environment created successfully with observation shape: {obs.shape}")
         
         return env
     
@@ -347,7 +345,9 @@ class MultiStockTrainer:
             curriculum_level=self.training_params.get('curriculum_level', 1),
             debug_mode=for_training,
             min_episode_length=20,
-            observation_generator=self.observation_generator
+            observation_generator=self.observation_generator,
+            observation_dim=self.observation_dim,  # Add missing observation dimension
+            symbol_feature_dim=self.symbol_feature_dim  # Add symbol feature dimension
         )
         
         return env
@@ -551,12 +551,13 @@ class MultiStockTrainer:
                     }
                     trades.append(trade_data)
                     
-                    print(f"Trade at step {step_count}: {trade_data['type']} {trade_data['shares']:.2f} shares at ${trade_data['price']:.2f}")
+                    if step_count % 50 == 0:  # Only show trades occasionally
+                        print(f"Sample trade: {trade_data['type']} {trade_data['shares']:.2f} shares at ${trade_data['price']:.2f}")
                 
-                # Print progress every 20 steps
-                if step_count % 20 == 0:
+                # Print progress less frequently
+                if step_count % 100 == 0:
                     current_return = (info['portfolio_value']/self.training_params['initial_capital'] - 1) * 100
-                    print(f"Step {step_count}: Portfolio = ${info['portfolio_value']:.2f} ({current_return:.2f}%)")
+                    print(f"Evaluation step {step_count}: Portfolio = ${info['portfolio_value']:.2f} ({current_return:.2f}%)")
             
             # Calculate evaluation metrics
             if len(portfolio_values) > 0:

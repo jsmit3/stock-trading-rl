@@ -1,0 +1,14 @@
+{
+  "symbol": "HON",
+  "status": "success",
+  "initial_value": 99963.96022103919,
+  "final_value": 100285.62476547124,
+  "total_return": 0.3217805134178242,
+  "avg_daily_return": 0.0021772653855325654,
+  "volatility": 1.0312865008813543,
+  "sharpe_ratio": 0.532025655998894,
+  "max_drawdown": 0.6726567685711088,
+  "num_steps": 150,
+  "num_buy_trades": 9,
+  "num_sell_trades": 9
+}

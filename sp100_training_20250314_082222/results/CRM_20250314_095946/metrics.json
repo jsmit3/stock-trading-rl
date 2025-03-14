@@ -1,0 +1,14 @@
+{
+  "symbol": "CRM",
+  "status": "success",
+  "initial_value": 100029.52360188375,
+  "final_value": 100698.04279689994,
+  "total_return": 0.668321882324352,
+  "avg_daily_return": 0.01263399986858609,
+  "volatility": 1.81557585056892,
+  "sharpe_ratio": 1.7535857650265863,
+  "max_drawdown": 0.5078032911910929,
+  "num_steps": 54,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

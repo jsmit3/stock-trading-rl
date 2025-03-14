@@ -1,0 +1,14 @@
+{
+  "symbol": "BK",
+  "status": "success",
+  "initial_value": 99922.7928281906,
+  "final_value": 100693.98311550937,
+  "total_return": 0.7717861615865518,
+  "avg_daily_return": 0.006760938560411069,
+  "volatility": 0.9160236076382231,
+  "sharpe_ratio": 1.85994826226845,
+  "max_drawdown": 0.45602897425387107,
+  "num_steps": 115,
+  "num_buy_trades": 7,
+  "num_sell_trades": 6
+}

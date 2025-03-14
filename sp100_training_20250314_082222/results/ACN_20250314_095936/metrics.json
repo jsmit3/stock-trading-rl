@@ -1,0 +1,14 @@
+{
+  "symbol": "ACN",
+  "status": "success",
+  "initial_value": 99974.5140981621,
+  "final_value": 99794.08570875361,
+  "total_return": -0.18047438493307144,
+  "avg_daily_return": -0.003028856233354298,
+  "volatility": 1.2850168989810191,
+  "sharpe_ratio": -0.5939780024764931,
+  "max_drawdown": 0.5159915310382335,
+  "num_steps": 60,
+  "num_buy_trades": 3,
+  "num_sell_trades": 2
+}

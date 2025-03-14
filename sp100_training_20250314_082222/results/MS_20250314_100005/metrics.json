@@ -1,0 +1,14 @@
+{
+  "symbol": "MS",
+  "status": "success",
+  "initial_value": 100101.39853298821,
+  "final_value": 101406.35684994816,
+  "total_return": 1.3036364487254426,
+  "avg_daily_return": 0.013129952330935151,
+  "volatility": 1.5259840238779163,
+  "sharpe_ratio": 2.168271709023062,
+  "max_drawdown": 0.6547845398968091,
+  "num_steps": 100,
+  "num_buy_trades": 7,
+  "num_sell_trades": 6
+}

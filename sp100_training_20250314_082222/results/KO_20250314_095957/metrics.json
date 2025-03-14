@@ -1,0 +1,14 @@
+{
+  "symbol": "KO",
+  "status": "success",
+  "initial_value": 100020.43993530852,
+  "final_value": 99173.57730765293,
+  "total_return": -0.8466895648562622,
+  "avg_daily_return": -0.009877047953978252,
+  "volatility": 0.6957643800700749,
+  "sharpe_ratio": -3.5773836024083825,
+  "max_drawdown": 0.9523396111688223,
+  "num_steps": 87,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

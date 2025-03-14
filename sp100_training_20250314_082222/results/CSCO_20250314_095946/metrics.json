@@ -1,0 +1,14 @@
+{
+  "symbol": "CSCO",
+  "status": "success",
+  "initial_value": 99957.31249442532,
+  "final_value": 100746.6496778998,
+  "total_return": 0.7896742757249386,
+  "avg_daily_return": 0.0050936573616062525,
+  "volatility": 0.9752881410363442,
+  "sharpe_ratio": 1.316125564451975,
+  "max_drawdown": 0.4512255518868168,
+  "num_steps": 156,
+  "num_buy_trades": 9,
+  "num_sell_trades": 8
+}

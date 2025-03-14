@@ -1,0 +1,14 @@
+{
+  "symbol": "PFE",
+  "status": "success",
+  "initial_value": 99969.14679998368,
+  "final_value": 99408.96108710997,
+  "total_return": -0.560358601433808,
+  "avg_daily_return": -0.004016596100497312,
+  "volatility": 1.1450953173013274,
+  "sharpe_ratio": -0.8839283525416521,
+  "max_drawdown": 1.4305924373266792,
+  "num_steps": 140,
+  "num_buy_trades": 10,
+  "num_sell_trades": 9
+}

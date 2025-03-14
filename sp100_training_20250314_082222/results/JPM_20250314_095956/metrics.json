@@ -1,0 +1,14 @@
+{
+  "symbol": "JPM",
+  "status": "success",
+  "initial_value": 99943.32405714848,
+  "final_value": 100715.7622374864,
+  "total_return": 0.7728762152199753,
+  "avg_daily_return": 0.00469934937863087,
+  "volatility": 1.292925881961701,
+  "sharpe_ratio": 0.9159349812211884,
+  "max_drawdown": 0.6274278556313431,
+  "num_steps": 166,
+  "num_buy_trades": 11,
+  "num_sell_trades": 11
+}

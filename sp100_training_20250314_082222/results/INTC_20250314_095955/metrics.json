@@ -1,0 +1,14 @@
+{
+  "symbol": "INTC",
+  "status": "success",
+  "initial_value": 99970.29087004377,
+  "final_value": 96807.81141664072,
+  "total_return": -3.163419277747337,
+  "avg_daily_return": -0.017901503873133297,
+  "volatility": 2.8003593368661694,
+  "sharpe_ratio": -1.6109286107110699,
+  "max_drawdown": 3.452453868406011,
+  "num_steps": 179,
+  "num_buy_trades": 16,
+  "num_sell_trades": 17
+}

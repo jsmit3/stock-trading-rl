@@ -1,0 +1,14 @@
+{
+  "symbol": "UNP",
+  "status": "success",
+  "initial_value": 99995.49099528843,
+  "final_value": 99372.04157943917,
+  "total_return": -0.6234775284803984,
+  "avg_daily_return": -0.008658809544065239,
+  "volatility": 1.1738458172795563,
+  "sharpe_ratio": -1.85886423326138,
+  "max_drawdown": 0.773366446984723,
+  "num_steps": 73,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

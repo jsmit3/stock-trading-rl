@@ -1,0 +1,14 @@
+{
+  "symbol": "ADBE",
+  "status": "success",
+  "initial_value": 100019.74598955872,
+  "final_value": 99046.90412004139,
+  "total_return": -0.9726498101873648,
+  "avg_daily_return": -0.009606546268788247,
+  "volatility": 1.8804201080877545,
+  "sharpe_ratio": -1.2873983049439204,
+  "max_drawdown": 1.6936309947321069,
+  "num_steps": 102,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

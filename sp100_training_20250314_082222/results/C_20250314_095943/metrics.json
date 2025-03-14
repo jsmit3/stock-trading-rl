@@ -1,0 +1,14 @@
+{
+  "symbol": "C",
+  "status": "success",
+  "initial_value": 99906.91471206099,
+  "final_value": 100272.3906106713,
+  "total_return": 0.36581641987807334,
+  "avg_daily_return": 0.0033675592730884256,
+  "volatility": 1.5548635234746746,
+  "sharpe_ratio": 0.5457874109245613,
+  "max_drawdown": 0.8337900282629843,
+  "num_steps": 111,
+  "num_buy_trades": 7,
+  "num_sell_trades": 7
+}

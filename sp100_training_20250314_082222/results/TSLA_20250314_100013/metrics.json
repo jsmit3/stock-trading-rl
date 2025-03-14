@@ -1,0 +1,14 @@
+{
+  "symbol": "TSLA",
+  "status": "success",
+  "initial_value": 99938.54666499549,
+  "final_value": 104068.76786273718,
+  "total_return": 4.132760917153044,
+  "avg_daily_return": 0.028362784722821895,
+  "volatility": 3.4528930046277506,
+  "sharpe_ratio": 2.0699806627577986,
+  "max_drawdown": 1.6699378258673028,
+  "num_steps": 145,
+  "num_buy_trades": 19,
+  "num_sell_trades": 20
+}

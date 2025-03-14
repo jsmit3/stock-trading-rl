@@ -1,0 +1,14 @@
+{
+  "symbol": "MSFT",
+  "status": "success",
+  "initial_value": 99909.11698342804,
+  "final_value": 99810.54491835208,
+  "total_return": -0.0986617318340488,
+  "avg_daily_return": -0.0005416531864572376,
+  "volatility": 1.0623294298946353,
+  "sharpe_ratio": -0.1284880180724749,
+  "max_drawdown": 1.035057514980487,
+  "num_steps": 176,
+  "num_buy_trades": 11,
+  "num_sell_trades": 10
+}

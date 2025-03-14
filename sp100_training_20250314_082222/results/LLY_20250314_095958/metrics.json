@@ -1,0 +1,14 @@
+{
+  "symbol": "LLY",
+  "status": "success",
+  "initial_value": 99886.80664045275,
+  "final_value": 98841.51319959115,
+  "total_return": -1.0464779844491234,
+  "avg_daily_return": -0.016134255510166316,
+  "volatility": 1.5700724618664041,
+  "sharpe_ratio": -2.589582638580072,
+  "max_drawdown": 1.4125720955145924,
+  "num_steps": 66,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

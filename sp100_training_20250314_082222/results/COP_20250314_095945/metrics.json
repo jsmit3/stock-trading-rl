@@ -1,0 +1,14 @@
+{
+  "symbol": "COP",
+  "status": "success",
+  "initial_value": 99970.02640757797,
+  "final_value": 98937.86190696414,
+  "total_return": -1.0324739701535024,
+  "avg_daily_return": -0.007830367577061886,
+  "volatility": 1.2651006930778559,
+  "sharpe_ratio": -1.5597593458105545,
+  "max_drawdown": 1.3564533256372646,
+  "num_steps": 133,
+  "num_buy_trades": 10,
+  "num_sell_trades": 9
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "USB",
+  "status": "success",
+  "initial_value": 99898.12577430862,
+  "final_value": 99651.10667361329,
+  "total_return": -0.247271006118166,
+  "avg_daily_return": -0.005011150185785694,
+  "volatility": 1.4434798620988822,
+  "sharpe_ratio": -0.8748371764479033,
+  "max_drawdown": 0.7361121403388777,
+  "num_steps": 50,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

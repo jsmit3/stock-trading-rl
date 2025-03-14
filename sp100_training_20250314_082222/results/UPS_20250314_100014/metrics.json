@@ -1,0 +1,14 @@
+{
+  "symbol": "UPS",
+  "status": "success",
+  "initial_value": 99974.19990598383,
+  "final_value": 99728.12545520256,
+  "total_return": -0.24613795460496357,
+  "avg_daily_return": -0.002685357351648345,
+  "volatility": 1.0709491400411373,
+  "sharpe_ratio": -0.631878795466785,
+  "max_drawdown": 0.6298308818473145,
+  "num_steps": 92,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

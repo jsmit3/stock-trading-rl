@@ -1,0 +1,14 @@
+{
+  "symbol": "GS",
+  "status": "success",
+  "initial_value": 99813.18886491311,
+  "final_value": 100438.45838504122,
+  "total_return": 0.6264397793906085,
+  "avg_daily_return": 0.005527820080724191,
+  "volatility": 1.5839473259751315,
+  "sharpe_ratio": 0.8794551671627792,
+  "max_drawdown": 0.5355426683180239,
+  "num_steps": 115,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

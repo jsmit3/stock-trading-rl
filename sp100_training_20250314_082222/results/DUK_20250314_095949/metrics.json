@@ -1,0 +1,14 @@
+{
+  "symbol": "DUK",
+  "status": "success",
+  "initial_value": 99972.23574711505,
+  "final_value": 100039.98281288114,
+  "total_return": 0.06776588045651621,
+  "avg_daily_return": 0.0005093609083202176,
+  "volatility": 0.8661257627059828,
+  "sharpe_ratio": 0.14819897343276217,
+  "max_drawdown": 0.7976669188186409,
+  "num_steps": 138,
+  "num_buy_trades": 8,
+  "num_sell_trades": 6
+}

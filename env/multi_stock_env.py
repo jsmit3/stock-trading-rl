@@ -114,6 +114,9 @@ class MultiStockTradingEnv(gym.Env):
         self.observation_dim = observation_dim
         self.symbol_feature_dim = symbol_feature_dim
         
+        # Set default value for max_risk_per_trade (will be updated in _apply_curriculum_settings)
+        self.max_risk_per_trade = 0.02
+        
         # Store all stock data
         self.stock_data = stock_data
         self.symbols = list(stock_data.keys())
@@ -181,7 +184,7 @@ class MultiStockTradingEnv(gym.Env):
         self.position_manager = PositionManager(
             market_simulator=self.market_simulator,
             risk_manager=self.risk_manager,
-            debug_mode=self.debug_mode
+            debug_mode=False  # Force debug mode off to reduce output
         )
         
         self.renderer = EnvironmentRenderer()
@@ -197,7 +200,13 @@ class MultiStockTradingEnv(gym.Env):
         self._select_random_symbol()
         dummy_observation = self._get_observation()
         
-        # Define the observation space with the fixed dimension
+        # Verify that the observation dimension matches what we expect
+        if dummy_observation.shape[0] != self.observation_dim:
+            print(f"WARNING: Observation shape {dummy_observation.shape} doesn't match expected dimension {self.observation_dim}")
+            print(f"Adjusting observation space to match actual shape")
+            self.observation_dim = dummy_observation.shape[0]
+        
+        # Define the observation space with the verified dimension
         self.observation_space = spaces.Box(
             low=-np.inf,
             high=np.inf,
@@ -303,7 +312,9 @@ class MultiStockTradingEnv(gym.Env):
             observation: The initial observation
             info: Additional information about the environment state
         """
-        super().reset(seed=seed)
+        # Reset RNG state in a way compatible with Gymnasium's reset API
+        if seed is not None:
+            self._np_random, seed = gym.utils.seeding.np_random(seed)
         
         # Select stock for this episode
         if options and 'symbol' in options:
@@ -356,10 +367,17 @@ class MultiStockTradingEnv(gym.Env):
         # Generate initial observation
         observation = self._get_observation()
         
+        # Get current date safely
+        if self.current_step < len(self.dates[self.current_symbol]):
+            current_date = self.dates[self.current_symbol][self.current_step]
+        else:
+            # Fallback to last available date if somehow index is out of bounds
+            current_date = self.dates[self.current_symbol][-1]
+            
         # Prepare info dictionary
         info = {
             'step': self.current_step,
-            'date': self.dates[self.current_symbol][self.current_step],
+            'date': current_date,
             'price': self.current_price,
             'portfolio_value': self.state.portfolio_value,
             'cash_balance': self.state.cash_balance,
@@ -402,9 +420,27 @@ class MultiStockTradingEnv(gym.Env):
         # Record the action
         self.state.actions_history.append(action.copy())
         
+        # Check if current_step is valid
+        if self.current_step >= len(self.price_data):
+            # Handle the case where we've reached the end of data
+            truncated = True
+            return (
+                self._get_observation(),
+                0.0,  # No reward for invalid step
+                False, 
+                truncated,
+                {
+                    'step': self.current_step,
+                    'message': 'Reached end of price data',
+                    'portfolio_value': self.state.portfolio_value,
+                    'symbol': self.current_symbol,
+                    'current_position': self.state.current_position
+                }
+            )
+        
         # Get current market state
         current_data = self.price_data.iloc[self.current_step]
-        prev_data = self.price_data.iloc[self.current_step - 1]
+        prev_data = self.price_data.iloc[max(0, self.current_step - 1)]
         
         # Store previous state for reward calculation
         prev_portfolio_value = self.state.portfolio_value
@@ -502,6 +538,12 @@ class MultiStockTradingEnv(gym.Env):
         # Update portfolio value
         self.state.update_portfolio_value(self.current_price)
         
+        # Calculate capital utilization (ensure no division by zero)
+        if self.state.portfolio_value > 0 and self.current_price > 0 and self.state.current_position > 0:
+            capital_utilization = self.state.current_position * self.current_price / self.state.portfolio_value
+        else:
+            capital_utilization = 0
+        
         # Calculate reward
         reward = self.reward_calculator.calculate_reward(
             prev_portfolio_value=prev_portfolio_value,
@@ -510,8 +552,7 @@ class MultiStockTradingEnv(gym.Env):
             current_position=self.state.current_position,
             drawdown=self.state.drawdown,
             daily_volatility=current_data.get('volatility', 0.01),
-            capital_utilization=self.state.current_position * self.current_price / self.state.portfolio_value 
-                if self.state.portfolio_value > 0 else 0,
+            capital_utilization=capital_utilization,
             trade_completed=trade_completed,
             trade_profit=trade_profit
         )
@@ -543,10 +584,16 @@ class MultiStockTradingEnv(gym.Env):
                     print(f"Episode terminated due to max drawdown exceeded at step {self.current_step}")
                     print(f"Drawdown: {self.state.drawdown:.2%}, Threshold: {self.max_drawdown_pct:.2%}")
         
+        # Get current date safely
+        if not truncated and self.current_step < len(self.dates[self.current_symbol]):
+            current_date = self.dates[self.current_symbol][self.current_step]
+        else:
+            current_date = self.dates[self.current_symbol][-1]
+            
         # Prepare info dictionary
         info = {
             'step': self.current_step,
-            'date': self.dates[self.current_symbol][self.current_step] if not truncated and self.current_step < len(self.dates[self.current_symbol]) else self.dates[self.current_symbol][-1],
+            'date': current_date,
             'price': self.current_price,
             'portfolio_value': self.state.portfolio_value,
             'cash_balance': self.state.cash_balance,
@@ -622,11 +669,27 @@ class MultiStockTradingEnv(gym.Env):
             Observation vector
         """
         try:
-            # Get market data for observation window
+            # Handle case where current_step is not valid for observation window
             if self.current_step < self.window_size:
-                raise ValueError(f"Current step {self.current_step} is less than window size {self.window_size}")
-                
-            market_data = self.price_data.iloc[self.current_step - self.window_size:self.current_step]
+                # For beginning of episode, use available data with padding
+                if self.current_step > 0:
+                    # Use available data
+                    market_data = self.price_data.iloc[:self.current_step]
+                    # Pad with first row repeated
+                    first_row = self.price_data.iloc[0:1]
+                    padding_count = self.window_size - self.current_step
+                    padded_rows = pd.concat([first_row] * padding_count)
+                    market_data = pd.concat([padded_rows, market_data])
+                else:
+                    # Use first window_size rows with repeated first row
+                    first_row = self.price_data.iloc[0:1]
+                    market_data = pd.concat([first_row] * self.window_size)
+            elif self.current_step >= len(self.price_data):
+                # If we're beyond available data, use last window_size rows
+                market_data = self.price_data.iloc[-self.window_size:]
+            else:
+                # Normal case - use window_size rows ending at current_step
+                market_data = self.price_data.iloc[self.current_step - self.window_size:self.current_step]
             
             # Generate base observation vector from the market data
             base_observation = self.observation_generator.generate_observation(
@@ -661,8 +724,8 @@ class MultiStockTradingEnv(gym.Env):
             return combined_observation
             
         except Exception as e:
-            if self.debug_mode:
-                print(f"Error generating observation: {e}")
+            # Print the error but continue
+            print(f"Error generating observation: {e}")
             
             # Return a zero vector of the CORRECT shape as a fallback
             return np.zeros(self.observation_dim, dtype=np.float32)

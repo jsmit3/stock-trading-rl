@@ -1,0 +1,14 @@
+{
+  "symbol": "LIN",
+  "status": "success",
+  "initial_value": 100012.03416142233,
+  "final_value": 99264.28194844662,
+  "total_return": -0.7476622380950815,
+  "avg_daily_return": -0.01470332718550201,
+  "volatility": 0.7346391311164954,
+  "sharpe_ratio": -5.043617054696408,
+  "max_drawdown": 0.8113897766750293,
+  "num_steps": 52,
+  "num_buy_trades": 3,
+  "num_sell_trades": 2
+}

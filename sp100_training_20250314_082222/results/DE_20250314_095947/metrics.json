@@ -1,0 +1,14 @@
+{
+  "symbol": "DE",
+  "status": "success",
+  "initial_value": 100076.85034599008,
+  "final_value": 100278.82030284517,
+  "total_return": 0.20181486143582283,
+  "avg_daily_return": 0.002757230647551887,
+  "volatility": 1.2845309348347331,
+  "sharpe_ratio": 0.5409150564929531,
+  "max_drawdown": 0.4928542159014223,
+  "num_steps": 75,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

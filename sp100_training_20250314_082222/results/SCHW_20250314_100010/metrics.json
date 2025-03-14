@@ -1,0 +1,14 @@
+{
+  "symbol": "SCHW",
+  "status": "success",
+  "initial_value": 99929.68297679332,
+  "final_value": 100528.51526637397,
+  "total_return": 0.5992536669206849,
+  "avg_daily_return": 0.01034344471451312,
+  "volatility": 1.4516798987590318,
+  "sharpe_ratio": 1.795539133858307,
+  "max_drawdown": 0.6871274782933666,
+  "num_steps": 59,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "KHC",
+  "status": "success",
+  "initial_value": 99907.12176666484,
+  "final_value": 99343.70159575954,
+  "total_return": -0.5639439520849998,
+  "avg_daily_return": -0.004331468440142299,
+  "volatility": 0.9719853791329308,
+  "sharpe_ratio": -1.1229901913643698,
+  "max_drawdown": 1.1003432000436222,
+  "num_steps": 131,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

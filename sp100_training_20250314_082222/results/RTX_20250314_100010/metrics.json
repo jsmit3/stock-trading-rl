@@ -1,0 +1,14 @@
+{
+  "symbol": "RTX",
+  "status": "success",
+  "initial_value": 99942.38033846072,
+  "final_value": 99735.8071174093,
+  "total_return": -0.20669231646458508,
+  "avg_daily_return": -0.00285721787043999,
+  "volatility": 0.910140232634105,
+  "sharpe_ratio": -0.7911076530119068,
+  "max_drawdown": 0.5882130992159386,
+  "num_steps": 73,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

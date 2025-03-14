@@ -1,0 +1,14 @@
+{
+  "symbol": "AMT",
+  "status": "success",
+  "initial_value": 100143.56704820172,
+  "final_value": 98925.15928074323,
+  "total_return": -1.216661043112266,
+  "avg_daily_return": -0.02349672195193348,
+  "volatility": 1.442426696348731,
+  "sharpe_ratio": -4.105008557367753,
+  "max_drawdown": 1.321139404616403,
+  "num_steps": 53,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

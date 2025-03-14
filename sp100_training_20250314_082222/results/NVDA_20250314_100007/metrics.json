@@ -1,0 +1,14 @@
+{
+  "symbol": "NVDA",
+  "status": "success",
+  "initial_value": 100320.9271192286,
+  "final_value": 100583.86843367812,
+  "total_return": 0.26210016394387914,
+  "avg_daily_return": 0.0019013270945761592,
+  "volatility": 2.6991098093244434,
+  "sharpe_ratio": 0.17751572247188935,
+  "max_drawdown": 1.899452743245215,
+  "num_steps": 150,
+  "num_buy_trades": 19,
+  "num_sell_trades": 19
+}

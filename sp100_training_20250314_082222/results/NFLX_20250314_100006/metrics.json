@@ -1,0 +1,14 @@
+{
+  "symbol": "NFLX",
+  "status": "success",
+  "initial_value": 100056.77775041321,
+  "final_value": 101639.20777886239,
+  "total_return": 1.5815320701177082,
+  "avg_daily_return": 0.010160280908736979,
+  "volatility": 1.3508682789674327,
+  "sharpe_ratio": 1.8953667273605777,
+  "max_drawdown": 0.79966424541053,
+  "num_steps": 156,
+  "num_buy_trades": 9,
+  "num_sell_trades": 8
+}

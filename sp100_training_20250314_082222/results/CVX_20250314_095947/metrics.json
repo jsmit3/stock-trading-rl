@@ -1,0 +1,14 @@
+{
+  "symbol": "CVX",
+  "status": "success",
+  "initial_value": 99983.24195941829,
+  "final_value": 99739.44879438705,
+  "total_return": -0.2438340268364092,
+  "avg_daily_return": -0.002723534459180514,
+  "volatility": 0.9907953938656988,
+  "sharpe_ratio": -0.6927067767601278,
+  "max_drawdown": 0.7981541573856726,
+  "num_steps": 90,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

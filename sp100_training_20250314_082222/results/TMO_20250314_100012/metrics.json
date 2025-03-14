@@ -1,0 +1,14 @@
+{
+  "symbol": "TMO",
+  "status": "success",
+  "initial_value": 99890.20439460578,
+  "final_value": 99308.9932166098,
+  "total_return": -0.5818500237520507,
+  "avg_daily_return": -0.004467533310758682,
+  "volatility": 1.0338299260323516,
+  "sharpe_ratio": -1.088978337696096,
+  "max_drawdown": 1.2737251463192523,
+  "num_steps": 131,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

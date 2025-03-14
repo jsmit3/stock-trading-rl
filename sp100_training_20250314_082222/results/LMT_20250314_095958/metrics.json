@@ -1,0 +1,14 @@
+{
+  "symbol": "LMT",
+  "status": "success",
+  "initial_value": 99955.6763478436,
+  "final_value": 99938.84962492688,
+  "total_return": -0.016834184442082734,
+  "avg_daily_return": -8.499950796043105e-05,
+  "volatility": 0.926532681852676,
+  "sharpe_ratio": -0.02311831673675868,
+  "max_drawdown": 1.364854130190551,
+  "num_steps": 166,
+  "num_buy_trades": 10,
+  "num_sell_trades": 9
+}

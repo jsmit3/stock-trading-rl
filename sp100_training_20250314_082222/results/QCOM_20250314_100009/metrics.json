@@ -1,0 +1,14 @@
+{
+  "symbol": "QCOM",
+  "status": "success",
+  "initial_value": 99813.01280442071,
+  "final_value": 98981.17557416251,
+  "total_return": -0.8333955732687359,
+  "avg_daily_return": -0.007590915612309446,
+  "volatility": 2.089260462287578,
+  "sharpe_ratio": -0.9155922724002981,
+  "max_drawdown": 1.1761940380206883,
+  "num_steps": 110,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "MDLZ",
+  "status": "success",
+  "initial_value": 100072.29242086007,
+  "final_value": 99198.58272800838,
+  "total_return": -0.8730785232512361,
+  "avg_daily_return": -0.008334463206302203,
+  "volatility": 0.9183436464056703,
+  "sharpe_ratio": -2.2870357259055645,
+  "max_drawdown": 1.4147715585721565,
+  "num_steps": 106,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "SPG",
+  "status": "success",
+  "initial_value": 99986.91168517065,
+  "final_value": 99965.58702494999,
+  "total_return": -0.02132745162467531,
+  "avg_daily_return": -0.0003260193944569635,
+  "volatility": 0.9525283517534672,
+  "sharpe_ratio": -0.08625138270363905,
+  "max_drawdown": 0.3604844620487387,
+  "num_steps": 63,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

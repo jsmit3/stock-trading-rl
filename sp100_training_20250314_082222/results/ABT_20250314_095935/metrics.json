@@ -1,0 +1,14 @@
+{
+  "symbol": "ABT",
+  "status": "success",
+  "initial_value": 100020.08842847246,
+  "final_value": 100293.4729820931,
+  "total_return": 0.2733296459902057,
+  "avg_daily_return": 0.0018748006759999993,
+  "volatility": 0.9508054752848223,
+  "sharpe_ratio": 0.49689424664963505,
+  "max_drawdown": 0.4764595334625685,
+  "num_steps": 148,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

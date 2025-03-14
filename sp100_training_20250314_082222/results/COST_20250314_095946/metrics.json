@@ -1,0 +1,14 @@
+{
+  "symbol": "COST",
+  "status": "success",
+  "initial_value": 99883.39715330096,
+  "final_value": 99940.84861595524,
+  "total_return": 0.05751853089868142,
+  "avg_daily_return": 0.0008729466089940298,
+  "volatility": 0.8609404764334159,
+  "sharpe_ratio": 0.25551423296742715,
+  "max_drawdown": 0.3474986575457991,
+  "num_steps": 68,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

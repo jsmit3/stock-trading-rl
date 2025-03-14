@@ -1,0 +1,14 @@
+{
+  "symbol": "GOOGL",
+  "status": "success",
+  "initial_value": 100014.92661512815,
+  "final_value": 100647.94207932199,
+  "total_return": 0.6329209905135302,
+  "avg_daily_return": 0.006476532489630098,
+  "volatility": 1.3894327453056785,
+  "sharpe_ratio": 1.1746420925380754,
+  "max_drawdown": 0.6208048438692999,
+  "num_steps": 99,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

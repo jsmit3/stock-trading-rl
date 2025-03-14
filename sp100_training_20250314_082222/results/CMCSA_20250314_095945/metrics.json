@@ -1,0 +1,14 @@
+{
+  "symbol": "CMCSA",
+  "status": "success",
+  "initial_value": 100030.035542674,
+  "final_value": 99544.37745536344,
+  "total_return": -0.48551226106819945,
+  "avg_daily_return": -0.007442109366989209,
+  "volatility": 1.5088674139659906,
+  "sharpe_ratio": -1.2429266767395057,
+  "max_drawdown": 1.0310341915322663,
+  "num_steps": 66,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

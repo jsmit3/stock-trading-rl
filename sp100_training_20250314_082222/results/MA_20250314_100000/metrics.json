@@ -1,0 +1,14 @@
+{
+  "symbol": "MA",
+  "status": "success",
+  "initial_value": 99874.3436405286,
+  "final_value": 100636.53894255921,
+  "total_return": 0.7631542538831804,
+  "avg_daily_return": 0.006926909644488852,
+  "volatility": 0.8764801491440783,
+  "sharpe_ratio": 1.9915810211056446,
+  "max_drawdown": 0.24520073558978997,
+  "num_steps": 111,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

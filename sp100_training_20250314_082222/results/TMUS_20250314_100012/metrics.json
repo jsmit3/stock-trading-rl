@@ -1,0 +1,14 @@
+{
+  "symbol": "TMUS",
+  "status": "success",
+  "initial_value": 99961.23922227813,
+  "final_value": 99884.92918684038,
+  "total_return": -0.07633962527021643,
+  "avg_daily_return": -0.0015525828463055131,
+  "volatility": 1.3912832734017817,
+  "sharpe_ratio": -0.28121582768141423,
+  "max_drawdown": 0.6704797403796313,
+  "num_steps": 49,
+  "num_buy_trades": 3,
+  "num_sell_trades": 2
+}

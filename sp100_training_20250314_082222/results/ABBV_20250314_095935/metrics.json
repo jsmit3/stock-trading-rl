@@ -1,0 +1,14 @@
+{
+  "symbol": "ABBV",
+  "status": "success",
+  "initial_value": 99911.2322113628,
+  "final_value": 99444.53354906657,
+  "total_return": -0.467113308450573,
+  "avg_daily_return": -0.007034612227895523,
+  "volatility": 1.7251694494974923,
+  "sharpe_ratio": -1.0275641514206217,
+  "max_drawdown": 1.0903893946619705,
+  "num_steps": 67,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

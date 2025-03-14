@@ -1,0 +1,14 @@
+{
+  "symbol": "AMD",
+  "status": "success",
+  "initial_value": 99747.98890095341,
+  "final_value": 98901.99147667698,
+  "total_return": -0.8481348181530568,
+  "avg_daily_return": -0.007710219926610581,
+  "volatility": 2.2854430780796835,
+  "sharpe_ratio": -0.8501526203568494,
+  "max_drawdown": 2.0213770492889167,
+  "num_steps": 110,
+  "num_buy_trades": 11,
+  "num_sell_trades": 9
+}

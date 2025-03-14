@@ -1,0 +1,14 @@
+{
+  "symbol": "MRK",
+  "status": "success",
+  "initial_value": 99917.34829846543,
+  "final_value": 98329.50673532812,
+  "total_return": -1.5891550268069876,
+  "avg_daily_return": -0.011578377378571963,
+  "volatility": 1.209071741737302,
+  "sharpe_ratio": -2.4132158569909588,
+  "max_drawdown": 1.8757561921735062,
+  "num_steps": 139,
+  "num_buy_trades": 8,
+  "num_sell_trades": 8
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "AVGO",
+  "status": "success",
+  "initial_value": 100135.554857788,
+  "final_value": 102605.29255393567,
+  "total_return": 2.4663943787550657,
+  "avg_daily_return": 0.015605881616676328,
+  "volatility": 3.048280390850383,
+  "sharpe_ratio": 1.2901313734808133,
+  "max_drawdown": 1.6676107076244229,
+  "num_steps": 159,
+  "num_buy_trades": 16,
+  "num_sell_trades": 17
+}

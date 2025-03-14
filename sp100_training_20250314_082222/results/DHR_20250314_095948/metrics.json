@@ -1,0 +1,14 @@
+{
+  "symbol": "DHR",
+  "status": "success",
+  "initial_value": 99969.73904669977,
+  "final_value": 98977.8518090841,
+  "total_return": -0.992187483006568,
+  "avg_daily_return": -0.010701365387093398,
+  "volatility": 1.0043558728287165,
+  "sharpe_ratio": -2.685048348402938,
+  "max_drawdown": 1.2014320105728118,
+  "num_steps": 94,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

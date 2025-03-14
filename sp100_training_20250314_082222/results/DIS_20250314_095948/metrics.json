@@ -1,0 +1,14 @@
+{
+  "symbol": "DIS",
+  "status": "success",
+  "initial_value": 99941.04425701714,
+  "final_value": 101051.10210145036,
+  "total_return": 1.1107126733421957,
+  "avg_daily_return": 0.011528897726882068,
+  "volatility": 1.0555771630454458,
+  "sharpe_ratio": 2.7523162956578666,
+  "max_drawdown": 0.3173233964637054,
+  "num_steps": 97,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

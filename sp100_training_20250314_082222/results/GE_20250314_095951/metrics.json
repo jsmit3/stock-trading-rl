@@ -1,0 +1,14 @@
+{
+  "symbol": "GE",
+  "status": "success",
+  "initial_value": 99955.72670617783,
+  "final_value": 99879.59979193588,
+  "total_return": -0.07616063306280507,
+  "avg_daily_return": -0.0009506116618042477,
+  "volatility": 1.6160616364533087,
+  "sharpe_ratio": -0.14823329344071812,
+  "max_drawdown": 1.1227478671605542,
+  "num_steps": 77,
+  "num_buy_trades": 5,
+  "num_sell_trades": 5
+}

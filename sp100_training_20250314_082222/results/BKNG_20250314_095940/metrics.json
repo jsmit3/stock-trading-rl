@@ -1,0 +1,14 @@
+{
+  "symbol": "BKNG",
+  "status": "success",
+  "initial_value": 99951.37856122146,
+  "final_value": 101278.90129985657,
+  "total_return": 1.3281685132756849,
+  "avg_daily_return": 0.007703500650899797,
+  "volatility": 1.272034105594376,
+  "sharpe_ratio": 1.5261243039703383,
+  "max_drawdown": 1.2329683919870846,
+  "num_steps": 173,
+  "num_buy_trades": 13,
+  "num_sell_trades": 12
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "CHTR",
+  "status": "success",
+  "initial_value": 99827.28357919982,
+  "final_value": 100614.21911782635,
+  "total_return": 0.7882970570888048,
+  "avg_daily_return": 0.005942956628977351,
+  "volatility": 2.047305320972314,
+  "sharpe_ratio": 0.7315103688545267,
+  "max_drawdown": 1.1147331734481216,
+  "num_steps": 135,
+  "num_buy_trades": 10,
+  "num_sell_trades": 9
+}

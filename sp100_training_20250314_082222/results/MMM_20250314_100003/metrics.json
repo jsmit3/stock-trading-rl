@@ -1,0 +1,14 @@
+{
+  "symbol": "MMM",
+  "status": "success",
+  "initial_value": 99944.11871436982,
+  "final_value": 101366.17441395235,
+  "total_return": 1.4228508069060286,
+  "avg_daily_return": 0.008317573921779287,
+  "volatility": 1.6702495725795872,
+  "sharpe_ratio": 1.2549194220425433,
+  "max_drawdown": 0.6634231247831519,
+  "num_steps": 172,
+  "num_buy_trades": 11,
+  "num_sell_trades": 11
+}

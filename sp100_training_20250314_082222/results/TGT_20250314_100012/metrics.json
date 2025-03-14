@@ -1,0 +1,14 @@
+{
+  "symbol": "TGT",
+  "status": "success",
+  "initial_value": 99952.09813693068,
+  "final_value": 99311.88995270555,
+  "total_return": -0.6405150028447326,
+  "avg_daily_return": -0.007920534050170208,
+  "volatility": 2.3623479856130443,
+  "sharpe_ratio": -0.8449113309294798,
+  "max_drawdown": 1.3781844099905989,
+  "num_steps": 81,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

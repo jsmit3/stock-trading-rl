@@ -1,0 +1,14 @@
+{
+  "symbol": "MCD",
+  "status": "success",
+  "initial_value": 100022.48075118121,
+  "final_value": 100343.29918289956,
+  "total_return": 0.32074632553498184,
+  "avg_daily_return": 0.002226384477528014,
+  "volatility": 0.948557847216148,
+  "sharpe_ratio": 0.5914756701277,
+  "max_drawdown": 0.576733568897843,
+  "num_steps": 146,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

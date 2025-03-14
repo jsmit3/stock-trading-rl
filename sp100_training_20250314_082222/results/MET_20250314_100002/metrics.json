@@ -1,0 +1,14 @@
+{
+  "symbol": "MET",
+  "status": "success",
+  "initial_value": 100063.23891741032,
+  "final_value": 99794.1696838296,
+  "total_return": -0.2688991846474198,
+  "avg_daily_return": -0.004946040165051649,
+  "volatility": 1.4226573631724222,
+  "sharpe_ratio": -0.8761084389382625,
+  "max_drawdown": 0.6049197353803603,
+  "num_steps": 55,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

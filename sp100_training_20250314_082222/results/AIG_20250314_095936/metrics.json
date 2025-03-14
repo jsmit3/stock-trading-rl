@@ -1,0 +1,14 @@
+{
+  "symbol": "AIG",
+  "status": "success",
+  "initial_value": 100044.06744761307,
+  "final_value": 99885.47181855215,
+  "total_return": -0.15852577079992214,
+  "avg_daily_return": -0.0020965523790899,
+  "volatility": 0.9730303802055589,
+  "sharpe_ratio": -0.5429750296378635,
+  "max_drawdown": 0.7447494806078231,
+  "num_steps": 76,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

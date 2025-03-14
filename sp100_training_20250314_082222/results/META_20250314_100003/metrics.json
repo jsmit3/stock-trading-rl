@@ -1,0 +1,14 @@
+{
+  "symbol": "META",
+  "status": "success",
+  "initial_value": 99896.25273406082,
+  "final_value": 100832.60782811133,
+  "total_return": 0.9373275457521313,
+  "avg_daily_return": 0.0063919923339751565,
+  "volatility": 1.5077879889271057,
+  "sharpe_ratio": 1.0683080645229979,
+  "max_drawdown": 0.8912658430601236,
+  "num_steps": 148,
+  "num_buy_trades": 10,
+  "num_sell_trades": 9
+}

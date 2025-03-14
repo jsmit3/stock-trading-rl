@@ -1,0 +1,14 @@
+{
+  "symbol": "EMR",
+  "status": "success",
+  "initial_value": 100016.9764322249,
+  "final_value": 100798.56303657587,
+  "total_return": 0.7814539413522503,
+  "avg_daily_return": 0.008315847888151288,
+  "volatility": 1.3188004849584278,
+  "sharpe_ratio": 1.5890149357051413,
+  "max_drawdown": 0.5576928436509375,
+  "num_steps": 95,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

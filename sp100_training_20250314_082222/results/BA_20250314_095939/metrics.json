@@ -1,0 +1,14 @@
+{
+  "symbol": "BA",
+  "status": "success",
+  "initial_value": 100067.32529860677,
+  "final_value": 100649.46641500773,
+  "total_return": 0.5817494518453703,
+  "avg_daily_return": 0.008576675662540795,
+  "volatility": 1.5220222512552009,
+  "sharpe_ratio": 1.4200332913515907,
+  "max_drawdown": 0.7582292735812879,
+  "num_steps": 69,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

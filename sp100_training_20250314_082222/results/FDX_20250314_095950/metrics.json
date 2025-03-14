@@ -1,0 +1,14 @@
+{
+  "symbol": "FDX",
+  "status": "success",
+  "initial_value": 99948.65873373937,
+  "final_value": 100152.11677171268,
+  "total_return": 0.20356254956388486,
+  "avg_daily_return": 0.003934310256116407,
+  "volatility": 1.0892354396593593,
+  "sharpe_ratio": 0.9102221140099823,
+  "max_drawdown": 0.6471392731047134,
+  "num_steps": 53,
+  "num_buy_trades": 3,
+  "num_sell_trades": 2
+}

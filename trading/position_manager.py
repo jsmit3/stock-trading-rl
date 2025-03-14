@@ -136,11 +136,10 @@ class PositionManager:
         # Add to trade history
         state.trade_history.append(trade_info)
         
-        if self.debug_mode:
+        # Only print trade information in debug mode with reduced frequency
+        if self.debug_mode and current_step % 100 == 0:
             print(f"Opened position at step {current_step}, date {dates[current_step if current_step < len(dates) else -1]}")
             print(f"Shares: {executed_shares:.2f}, Entry price: ${executed_price:.2f}")
-            print(f"Stop loss: ${state.position_entry_price * (1 - stop_loss_pct):.2f} ({stop_loss_pct:.2%})")
-            print(f"Take profit: ${state.position_entry_price * (1 + take_profit_pct):.2f} ({take_profit_pct:.2%})")
         
         return trade_info
     
@@ -225,9 +224,8 @@ class PositionManager:
         # Update risk manager with trade result
         self.risk_manager.update_trade_result(state.position_pnl / 100)  # Convert percentage to decimal
         
-        if self.debug_mode:
-            print(f"Closed position at step {current_step}, date {dates[current_step if current_step < len(dates) else -1]}")
-            print(f"Reason: {reason}, Profit/Loss: ${profit_loss:.2f} ({state.position_pnl:.2%})")
-            print(f"Duration: {current_step - state.position_entry_step} days")
+        # Only print trade information in debug mode with reduced frequency
+        if self.debug_mode and current_step % 100 == 0:
+            print(f"Closed position: ${profit_loss:.2f} ({state.position_pnl:.2%}), duration: {current_step - state.position_entry_step} days")
         
         return trade_info

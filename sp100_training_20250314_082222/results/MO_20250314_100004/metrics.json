@@ -1,0 +1,14 @@
+{
+  "symbol": "MO",
+  "status": "success",
+  "initial_value": 99967.50654584766,
+  "final_value": 100390.91636231277,
+  "total_return": 0.42354744165886693,
+  "avg_daily_return": 0.0036325365568219015,
+  "volatility": 1.0056883233972962,
+  "sharpe_ratio": 0.910221577622406,
+  "max_drawdown": 0.5818590176673915,
+  "num_steps": 118,
+  "num_buy_trades": 7,
+  "num_sell_trades": 6
+}

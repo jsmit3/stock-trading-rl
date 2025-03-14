@@ -1,0 +1,14 @@
+{
+  "symbol": "AMZN",
+  "status": "success",
+  "initial_value": 99932.79195885074,
+  "final_value": 100487.1798195781,
+  "total_return": 0.5547607045299552,
+  "avg_daily_return": 0.008426067196865006,
+  "volatility": 1.4803299290189655,
+  "sharpe_ratio": 1.4343889777444188,
+  "max_drawdown": 0.46403745750431535,
+  "num_steps": 67,
+  "num_buy_trades": 6,
+  "num_sell_trades": 5
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "AXP",
+  "status": "success",
+  "initial_value": 99883.87300381083,
+  "final_value": 100770.29520692784,
+  "total_return": 0.8874527753676364,
+  "avg_daily_return": 0.005290188529941319,
+  "volatility": 1.247773942381832,
+  "sharpe_ratio": 1.0684046719235474,
+  "max_drawdown": 0.5901540442708596,
+  "num_steps": 169,
+  "num_buy_trades": 10,
+  "num_sell_trades": 9
+}

@@ -1,0 +1,14 @@
+{
+  "symbol": "AMGN",
+  "status": "success",
+  "initial_value": 99974.37302941586,
+  "final_value": 98836.99969723441,
+  "total_return": -1.1376648812259083,
+  "avg_daily_return": -0.022843120135635386,
+  "volatility": 1.3825416067766554,
+  "sharpe_ratio": -4.163683932522729,
+  "max_drawdown": 1.215962689352662,
+  "num_steps": 51,
+  "num_buy_trades": 5,
+  "num_sell_trades": 4
+}

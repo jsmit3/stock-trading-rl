@@ -1,0 +1,14 @@
+{
+  "symbol": "T",
+  "status": "success",
+  "initial_value": 99924.3885432129,
+  "final_value": 100872.92203569745,
+  "total_return": 0.9492512351720439,
+  "avg_daily_return": 0.006722712288125863,
+  "volatility": 1.0522282057247414,
+  "sharpe_ratio": 1.6100342942630579,
+  "max_drawdown": 0.3021869138810698,
+  "num_steps": 142,
+  "num_buy_trades": 8,
+  "num_sell_trades": 7
+}

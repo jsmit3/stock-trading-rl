@@ -1,0 +1,14 @@
+{
+  "symbol": "BMY",
+  "status": "success",
+  "initial_value": 100003.280350159,
+  "final_value": 101524.14357440332,
+  "total_return": 1.5208133362416332,
+  "avg_daily_return": 0.012635953254503117,
+  "volatility": 1.6981963076889688,
+  "sharpe_ratio": 1.8750837024655667,
+  "max_drawdown": 0.47023728095351636,
+  "num_steps": 121,
+  "num_buy_trades": 9,
+  "num_sell_trades": 8
+}

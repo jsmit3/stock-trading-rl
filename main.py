@@ -3,13 +3,13 @@
 Main script for training and evaluating reinforcement learning agents on stock data.
 
 This script:
-1. Sets up the SP100Trainer with configuration parameters
-2. Trains models on selected symbols
+1. Sets up the SP100Trainer or MultiStockTrainer with configuration parameters
+2. Trains models on selected symbols (one model per symbol or a single model across all symbols)
 3. Evaluates the trained models
 4. Prints a summary of results
 
 Usage:
-    python main.py
+    python main.py [--multi-stock]
 
 Author: [Your Name]
 Date: March 13, 2025
@@ -24,6 +24,7 @@ from datetime import datetime
 
 # Import components
 from sp100_trainer import SP100Trainer
+from multi_stock_trainer import MultiStockTrainer
 from observation.generator import ObservationGenerator
 
 
@@ -88,6 +89,19 @@ def parse_arguments():
         help="Fixed observation dimension"
     )
     
+    parser.add_argument(
+        "--symbol-dim",
+        type=int,
+        default=20,
+        help="Symbol embedding dimension (only used with --multi-stock)"
+    )
+    
+    parser.add_argument(
+        "--multi-stock",
+        action="store_true",
+        help="Train a single model across multiple stocks"
+    )
+    
     return parser.parse_args()
 
 
@@ -144,18 +158,15 @@ def main():
         
         # Print configuration
         print("\n=== Stock Trading RL Training ===")
+        print(f"Mode: {'Multi-stock (single model)' if args.multi_stock else 'Single-stock (per symbol)'}")
         print(f"Database: {args.db_path}")
         print(f"Timeframe: {args.timeframe}")
         print(f"Output directory: {args.output_dir}")
         print(f"Training timesteps: {args.timesteps}")
         print(f"Random seed: {args.seed}")
         print(f"Observation dimension: {args.obs_dim}")
-        
-        # Create a consistent observation generator
-        observation_generator = create_observation_generator(
-            window_size=20,
-            fixed_dim=args.obs_dim
-        )
+        if args.multi_stock:
+            print(f"Symbol embedding dimension: {args.symbol_dim}")
         
         # Define training parameters
         training_params = {
@@ -169,17 +180,12 @@ def main():
             'batch_size': 256,
             'total_timesteps': args.timesteps,
             'seed': args.seed,
-            'observation_dim': args.obs_dim  # Add observation dimension parameter
+            'observation_dim': args.obs_dim
         }
         
-        # Initialize the trainer with the observation generator
-        trainer = SP100Trainer(
-            db_path=args.db_path,
-            timeframe=args.timeframe,
-            output_dir=args.output_dir,
-            training_params=training_params,
-            observation_generator=observation_generator  # Pass the observation generator
-        )
+        # Add symbol feature dimension if using multi-stock training
+        if args.multi_stock:
+            training_params['symbol_feature_dim'] = args.symbol_dim
         
         # Determine symbols to train on
         symbols_to_train = []
@@ -206,25 +212,84 @@ def main():
         print(f"\nTraining on {len(symbols_to_train)} symbols: {', '.join(symbols_to_train[:5])}" + 
               (f"..." if len(symbols_to_train) > 5 else ""))
         
+        # Create the appropriate trainer
+        if args.multi_stock:
+            # Multi-stock mode: one model for all symbols
+            trainer = MultiStockTrainer(
+                db_path=args.db_path,
+                timeframe=args.timeframe,
+                output_dir=args.output_dir,
+                training_params=training_params,
+                observation_dim=args.obs_dim,
+                symbol_feature_dim=args.symbol_dim
+            )
+        else:
+            # Single-stock mode: one model per symbol
+            observation_generator = create_observation_generator(
+                window_size=20,
+                fixed_dim=args.obs_dim
+            )
+            
+            trainer = SP100Trainer(
+                db_path=args.db_path,
+                timeframe=args.timeframe,
+                output_dir=args.output_dir,
+                training_params=training_params,
+                observation_generator=observation_generator
+            )
+        
         # Start training and evaluation
         print("\nStarting training process...")
         results = trainer.run(symbols=symbols_to_train)
         
         # Print final summary
         print("\n=== Training Complete ===")
-        print(f"Trained on {len(results['training_results'])} symbols")
         
-        successful_evals = len([r for r in results['evaluation_results'].values() 
-                              if r.get('status') == 'success'])
-        print(f"Successfully evaluated {successful_evals} models")
-        
-        # Print details of successful models
-        if successful_evals > 0:
-            print("\nSuccessful models:")
-            for symbol, result in results['evaluation_results'].items():
-                if result.get('status') == 'success':
-                    print(f"  {symbol}: Return={result.get('total_return', 0):.2f}%, " +
-                          f"Sharpe={result.get('sharpe_ratio', 0):.2f}")
+        if args.multi_stock:
+            # Multi-stock evaluation results
+            if results['training_results'].get('status') == 'success':
+                # If single model training succeeded
+                print("Multi-stock model training successful!")
+                
+                # Count successful evaluations
+                successful_evals = sum(1 for r in results['evaluation_results'].values() 
+                                     if r.get('status') == 'success')
+                print(f"Successfully evaluated on {successful_evals}/{len(results['evaluation_results'])} symbols")
+                
+                # Print details of evaluations
+                if successful_evals > 0:
+                    print("\nEvaluation results by symbol:")
+                    
+                    # Sort by Sharpe ratio
+                    sorted_evals = sorted(
+                        [(s, r) for s, r in results['evaluation_results'].items() if r.get('status') == 'success'],
+                        key=lambda x: x[1].get('sharpe_ratio', -999),
+                        reverse=True
+                    )
+                    
+                    for symbol, result in sorted_evals:
+                        print(f"  {symbol}: Return={result.get('total_return', 0):.2f}%, " +
+                             f"Sharpe={result.get('sharpe_ratio', 0):.2f}, " +
+                             f"Drawdown={result.get('max_drawdown', 0):.2f}%")
+            else:
+                # If training failed
+                print("Multi-stock model training failed.")
+                print(f"Reason: {results['training_results'].get('reason', 'unknown')}")
+        else:
+            # Single stock evaluation results
+            print(f"Trained on {len(results['training_results'])} symbols")
+            
+            successful_evals = len([r for r in results['evaluation_results'].values() 
+                                  if r.get('status') == 'success'])
+            print(f"Successfully evaluated {successful_evals} models")
+            
+            # Print details of successful models
+            if successful_evals > 0:
+                print("\nSuccessful models:")
+                for symbol, result in results['evaluation_results'].items():
+                    if result.get('status') == 'success':
+                        print(f"  {symbol}: Return={result.get('total_return', 0):.2f}%, " +
+                              f"Sharpe={result.get('sharpe_ratio', 0):.2f}")
         
         print(f"\nAll results saved to {args.output_dir}/results/")
         

@@ -1,0 +1,14 @@
+{
+  "symbol": "CL",
+  "status": "success",
+  "initial_value": 99948.8047169184,
+  "final_value": 99464.89075617206,
+  "total_return": -0.48416182876515057,
+  "avg_daily_return": -0.008348871138260163,
+  "volatility": 0.9697531473363226,
+  "sharpe_ratio": -2.1695371988433436,
+  "max_drawdown": 0.6338099593673157,
+  "num_steps": 59,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

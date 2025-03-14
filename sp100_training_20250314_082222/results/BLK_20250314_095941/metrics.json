@@ -1,0 +1,14 @@
+{
+  "symbol": "BLK",
+  "status": "success",
+  "initial_value": 100006.62683552247,
+  "final_value": 100980.67445510237,
+  "total_return": 0.9739830753234813,
+  "avg_daily_return": 0.006269952662281715,
+  "volatility": 0.9091477670105864,
+  "sharpe_ratio": 1.7379221818806865,
+  "max_drawdown": 0.3659300622549042,
+  "num_steps": 156,
+  "num_buy_trades": 9,
+  "num_sell_trades": 8
+}

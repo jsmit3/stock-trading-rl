@@ -1,0 +1,14 @@
+{
+  "symbol": "CAT",
+  "status": "success",
+  "initial_value": 99753.43368089908,
+  "final_value": 99636.61510340417,
+  "total_return": -0.11710732471486018,
+  "avg_daily_return": -0.0006615300128621189,
+  "volatility": 1.34620320220855,
+  "sharpe_ratio": -0.12383387810083997,
+  "max_drawdown": 0.9128917480213568,
+  "num_steps": 169,
+  "num_buy_trades": 13,
+  "num_sell_trades": 12
+}

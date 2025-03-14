@@ -1,0 +1,14 @@
+{
+  "symbol": "JNJ",
+  "status": "success",
+  "initial_value": 100019.54527875879,
+  "final_value": 99194.56012669561,
+  "total_return": -0.8248239379252453,
+  "avg_daily_return": -0.011337253551786417,
+  "volatility": 0.6316537224394416,
+  "sharpe_ratio": -4.523028668328769,
+  "max_drawdown": 0.8760530995394403,
+  "num_steps": 74,
+  "num_buy_trades": 4,
+  "num_sell_trades": 3
+}

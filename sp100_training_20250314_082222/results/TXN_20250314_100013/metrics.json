@@ -1,0 +1,14 @@
+{
+  "symbol": "TXN",
+  "status": "success",
+  "initial_value": 100004.13231573833,
+  "final_value": 99800.36016172876,
+  "total_return": -0.20376373384872748,
+  "avg_daily_return": -0.0012237142189641186,
+  "volatility": 1.4752209718814568,
+  "sharpe_ratio": -0.20903714701511028,
+  "max_drawdown": 0.9882245734714794,
+  "num_steps": 162,
+  "num_buy_trades": 12,
+  "num_sell_trades": 11
+}
